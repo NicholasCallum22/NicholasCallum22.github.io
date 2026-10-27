@@ -118,7 +118,7 @@ export const results: Result[] = [
   },
   {
     figure: "14%",
-    what: "Lower post-production rejection rate for heavily loaded shafts, with runout held within 15 µm through PFMEA-led machining control.",
+    what: "Lower post-production rejection rate for heavily loaded shafts, after applying PFMEA to the machining risks and holding runout within 15 µm.",
     where: "Pitti Engineering",
     scope: "Industry",
     evidence: "work",

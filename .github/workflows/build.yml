@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 env:
-  DEPLOY: "false"
+  DEPLOY: "true"
 
 jobs:
   build:
