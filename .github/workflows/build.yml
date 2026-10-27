@@ -1,0 +1,70 @@
+name: build
+
+# Builds the site from the `source` branch.
+# - Always publishes the build log to the `ci-log` branch and the built site to `preview`.
+# - Publishes to `main` (the live site) only when DEPLOY is "true".
+on:
+  push:
+    branches: [source]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  DEPLOY: "false"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install and build
+        id: build
+        run: |
+          set -o pipefail
+          {
+            echo "commit ${GITHUB_SHA}"
+            npm install --no-audit --no-fund
+            ls node_modules/@fontsource-variable/bricolage-grotesque || true
+            npm run build
+          } 2>&1 | tee build.log
+
+      - name: Publish build log
+        if: always()
+        run: |
+          mkdir -p /tmp/log
+          cp build.log /tmp/log/build.log 2>/dev/null || echo "no log" > /tmp/log/build.log
+          echo "${{ steps.build.outcome }}" > /tmp/log/outcome.txt
+          cd /tmp/log
+          git init -q -b ci-log
+          git add .
+          git -c user.name="Nischal Prathipati" -c user.email="217755606+NicholasCallum22@users.noreply.github.com" commit -q -m "Build log for ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ci-log
+
+      - name: Publish preview
+        run: |
+          cp -r dist /tmp/site
+          touch /tmp/site/.nojekyll
+          cd /tmp/site
+          git init -q -b preview
+          git add .
+          git -c user.name="Nischal Prathipati" -c user.email="217755606+NicholasCallum22@users.noreply.github.com" commit -q -m "Preview build of ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" preview
+
+      - name: Deploy to the live site
+        if: env.DEPLOY == 'true'
+        run: |
+          git fetch -q origin main
+          git worktree add -q /tmp/live origin/main
+          cd /tmp/live
+          git rm -rq --ignore-unmatch .
+          cp -r /tmp/site/. .
+          git add -A
+          git -c user.name="Nischal Prathipati" -c user.email="217755606+NicholasCallum22@users.noreply.github.com" commit -q -m "Deploy ${GITHUB_SHA::7}" || echo "Nothing to deploy"
+          git push -q "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main

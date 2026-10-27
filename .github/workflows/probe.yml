@@ -1,9 +1,0 @@
-name: probe
-on:
-  push:
-    branches: [source]
-jobs:
-  probe:
-    runs-on: ubuntu-latest
-    steps:
-      - run: node -v && npm -v

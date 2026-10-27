@@ -1,0 +1,351 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Identity: "Evidence". A sage-grey sheet, green-black ink and an oxide-teal
+   brand colour. The memorable device is the evidence colour system: every
+   result is tagged as test data, a workplace result, a simulation or a
+   calculation. Everything else stays quiet. One typeface: Bricolage Grotesque. */
+
+@theme {
+  --font-sans: "Bricolage Grotesque Variable", "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --text-plus: 1.4rem;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-ev-test: var(--ev-test);
+  --color-ev-work: var(--ev-work);
+  --color-ev-sim: var(--ev-sim);
+  --color-ev-calc: var(--ev-calc);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #f2f4f1;
+  --foreground: #1b1f1d;
+  --card: #ffffff;
+  --card-foreground: #1b1f1d;
+  --popover: #ffffff;
+  --popover-foreground: #1b1f1d;
+  --primary: #0e6b5c;
+  --primary-foreground: #ffffff;
+  --secondary: #e3e9e5;
+  --secondary-foreground: #1b1f1d;
+  --muted: #e8ece9;
+  --muted-foreground: #4b5751;
+  --accent: #dbe5e0;
+  --accent-foreground: #1b1f1d;
+  --destructive: #b42318;
+  --border: #d1d9d4;
+  --input: #c3ccc7;
+  --ring: #0e6b5c;
+  --sidebar: #e8ece9;
+  --sidebar-foreground: #1b1f1d;
+  --sidebar-primary: #0e6b5c;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #d8e1dc;
+  --sidebar-accent-foreground: #1b1f1d;
+  --sidebar-border: #d1d9d4;
+  --sidebar-ring: #0e6b5c;
+
+  --ev-test: #0e6b5c;
+  --ev-work: #2f55b5;
+  --ev-sim: #7a3fb0;
+  --ev-calc: #95500a;
+
+  --line-strong: #9aa8a1;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0f1412;
+  --foreground: #e6ece8;
+  --card: #161d1a;
+  --card-foreground: #e6ece8;
+  --popover: #161d1a;
+  --popover-foreground: #e6ece8;
+  --primary: #4fd1b5;
+  --primary-foreground: #04211b;
+  --secondary: #1f2925;
+  --secondary-foreground: #e6ece8;
+  --muted: #1b2420;
+  --muted-foreground: #a6b4ad;
+  --accent: #23312b;
+  --accent-foreground: #e6ece8;
+  --destructive: #f97066;
+  --border: #2b3732;
+  --input: #36443d;
+  --ring: #4fd1b5;
+  --sidebar: #121916;
+  --sidebar-foreground: #e6ece8;
+  --sidebar-primary: #4fd1b5;
+  --sidebar-primary-foreground: #04211b;
+  --sidebar-accent: #1f2a25;
+  --sidebar-accent-foreground: #e6ece8;
+  --sidebar-border: #2b3732;
+  --sidebar-ring: #4fd1b5;
+
+  --ev-test: #4fd1b5;
+  --ev-work: #93acff;
+  --ev-sim: #caa4f4;
+  --ev-calc: #eeb35e;
+
+  --line-strong: #52625a;
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 28%, transparent);
+  }
+}
+
+/* ---------- Type scale (Bricolage, optical sizes) ---------- */
+.display-name {
+  font-size: clamp(2.75rem, 1.6rem + 6.2vw, 6.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  font-weight: 760;
+  font-variation-settings: "opsz" 96, "wdth" 82;
+}
+.h-section {
+  font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 680;
+  font-variation-settings: "opsz" 48;
+}
+.h-item {
+  font-size: 1.1875rem;
+  line-height: 1.3;
+  font-weight: 650;
+  letter-spacing: -0.005em;
+}
+.lede {
+  font-size: clamp(1.15rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.5;
+  font-weight: 400;
+}
+.figure-num {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-weight: 720;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 60, "wdth" 85;
+  line-height: 1;
+}
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+.measure {
+  max-width: 68ch;
+}
+
+/* ---------- Evidence system ---------- */
+.ev {
+  --ev: var(--ev-test);
+}
+.ev-test {
+  --ev: var(--ev-test);
+}
+.ev-work {
+  --ev: var(--ev-work);
+}
+.ev-sim {
+  --ev: var(--ev-sim);
+}
+.ev-calc {
+  --ev: var(--ev-calc);
+}
+.ev-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.125rem 0.5rem 0.125rem 0.375rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 560;
+  line-height: 1.5;
+  color: var(--ev);
+  background: color-mix(in srgb, var(--ev) 11%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ev) 32%, transparent);
+  white-space: nowrap;
+}
+.ev-mark {
+  width: 0.7rem;
+  height: 0.7rem;
+  flex: none;
+  color: var(--ev);
+}
+.ev-rule {
+  border-left: 3px solid var(--ev);
+}
+.filter-chip[aria-pressed="false"] {
+  color: var(--muted-foreground);
+  background: transparent;
+  border-color: var(--border);
+}
+.filter-chip[aria-pressed="false"] .ev-mark {
+  opacity: 0.55;
+}
+
+/* ---------- Correlation bar: the one motion moment ---------- */
+.corr {
+  --gap: 19;
+}
+.corr-track {
+  position: relative;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: var(--muted);
+  overflow: hidden;
+}
+.corr-measured {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100%;
+  border-right: 2px solid var(--foreground);
+}
+.corr-model {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--ev-test);
+  border-radius: 999px;
+  width: 81%;
+  transition: width 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.corr.is-closed .corr-model {
+  width: 94%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .corr-model {
+    transition: none;
+  }
+}
+
+/* ---------- Engineering schematics (theme-aware) ---------- */
+.schematic svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.schematic {
+  --ink: var(--foreground);
+  --panel: var(--card);
+  --hatch: color-mix(in srgb, var(--foreground) 9%, transparent);
+  --tint: color-mix(in srgb, var(--primary) 14%, transparent);
+  --datum: var(--primary);
+  --callout: var(--primary);
+  --quiet: var(--muted-foreground);
+}
+.schematic .ln { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.schematic .ln-thin { fill: none; stroke: var(--ink); stroke-width: 0.9; }
+.schematic .ln-frame { fill: none; stroke: var(--line-strong); stroke-width: 1; }
+.schematic .ln-center { fill: none; stroke: var(--datum); stroke-width: 0.9; stroke-dasharray: 14 3 2 3; }
+.schematic .ln-red { fill: none; stroke: var(--callout); stroke-width: 1.2; }
+.schematic .fill-red { fill: var(--callout); }
+.schematic .fill-ink { fill: var(--ink); }
+.schematic .body-fill { fill: var(--hatch); }
+.schematic .svg-t { font-family: var(--font-sans); font-size: 13px; fill: var(--ink); font-weight: 500; }
+.schematic .svg-t.red { fill: var(--callout); font-weight: 650; }
+.schematic .svg-t.sm { font-size: 11.5px; fill: var(--quiet); font-weight: 450; }
+.schematic .jacket { fill: none; stroke: var(--datum); stroke-width: 7; stroke-dasharray: 10 6; opacity: 0.55; }
+.schematic .slot { fill: var(--panel); stroke: var(--ink); stroke-width: 0.8; }
+.schematic .magnet { fill: var(--ink); opacity: 0.55; }
+.schematic .steel { fill: url(#np-hatch); stroke: var(--ink); stroke-width: 1.5; }
+.schematic .rubber,
+.schematic .oil,
+.schematic .cell { fill: var(--tint); stroke: var(--ink); stroke-width: 1.4; }
+.schematic .oil { stroke: none; }
+.schematic .cell { stroke: var(--datum); stroke-width: 0.8; }
+.schematic .gear,
+.schematic .mass { fill: var(--hatch); stroke: var(--ink); stroke-width: 1.4; }
+.schematic .active { fill: none; stroke: var(--callout); stroke-width: 1.6; }
+.schematic .ground,
+.schematic .arrow-ln { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+.schematic .hatchline { stroke: var(--line-strong); stroke-width: 1; fill: none; }
+.schematic .stream { fill: none; stroke: var(--datum); stroke-width: 1; stroke-dasharray: 6 4; opacity: 0.75; }
+
+/* ---------- Case-study prose ---------- */
+.case-prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-bullets: var(--muted-foreground);
+  --tw-prose-counters: var(--muted-foreground);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--primary);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+  --tw-prose-code: var(--foreground);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+.case-prose h2 {
+  font-weight: 680;
+  letter-spacing: -0.015em;
+  margin-top: 2.25em;
+}
+.case-prose table {
+  font-variant-numeric: tabular-nums;
+}
+.case-prose code {
+  font-family: inherit;
+  font-weight: 600;
+}
+.case-prose code::before,
+.case-prose code::after {
+  content: none;
+}

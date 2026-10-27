@@ -1,0 +1,6 @@
+# Site settings. repoUrl decides the base path: a <user>.github.io repository is served from "/".
+site:
+  name: "Nischal Prathipati"
+  repoUrl: "https://github.com/NicholasCallum22/NicholasCallum22.github.io"
+  description: "Mechanical design engineer: product design, GD&T, FEA and DFM, with industrial experience at JCB, Caterpillar and Pitti Engineering."
+  author: "Nischal Prathipati"
