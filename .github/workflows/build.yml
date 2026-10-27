@@ -35,18 +35,6 @@ jobs:
             npm run build
           } 2>&1 | tee build.log
 
-      - name: Publish build log
-        if: always()
-        run: |
-          mkdir -p /tmp/log
-          cp build.log /tmp/log/build.log 2>/dev/null || echo "no log" > /tmp/log/build.log
-          echo "${{ steps.build.outcome }}" > /tmp/log/outcome.txt
-          cd /tmp/log
-          git init -q -b ci-log
-          git add .
-          git -c user.name="Nischal Prathipati" -c user.email="217755606+NicholasCallum22@users.noreply.github.com" commit -q -m "Build log for ${GITHUB_SHA::7}"
-          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ci-log
-
       - name: Publish preview
         run: |
           cp -r dist /tmp/site
@@ -60,11 +48,31 @@ jobs:
       - name: Deploy to the live site
         if: env.DEPLOY == 'true'
         run: |
-          git fetch -q origin main
-          git worktree add -q /tmp/live origin/main
-          cd /tmp/live
-          git rm -rq --ignore-unmatch .
-          cp -r /tmp/site/. .
-          git add -A
-          git -c user.name="Nischal Prathipati" -c user.email="217755606+NicholasCallum22@users.noreply.github.com" commit -q -m "Deploy ${GITHUB_SHA::7}" || echo "Nothing to deploy"
-          git push -q "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+          set -o pipefail
+          {
+            git clone -q --depth 1 --branch main "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" /tmp/live
+            cd /tmp/live
+            find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+            cp -r /tmp/site/. .
+            git add -A
+            if git diff --cached --quiet; then
+              echo "Nothing to deploy"
+            else
+              git -c user.name="Nischal Prathipati" -c user.email="217755606+NicholasCallum22@users.noreply.github.com" commit -q -m "Deploy ${GITHUB_SHA::7}"
+              git push -q origin HEAD:main
+              echo "Deployed ${GITHUB_SHA::7}"
+            fi
+          } 2>&1 | tee /tmp/deploy.log
+
+      - name: Publish build log
+        if: always()
+        run: |
+          mkdir -p /tmp/log
+          cp build.log /tmp/log/build.log 2>/dev/null || echo "no log" > /tmp/log/build.log
+          cp /tmp/deploy.log /tmp/log/deploy.log 2>/dev/null || true
+          echo "${{ steps.build.outcome }}" > /tmp/log/outcome.txt
+          cd /tmp/log
+          git init -q -b ci-log
+          git add .
+          git -c user.name="Nischal Prathipati" -c user.email="217755606+NicholasCallum22@users.noreply.github.com" commit -q -m "Build log for ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ci-log
