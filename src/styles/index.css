@@ -141,10 +141,10 @@
     font-size: 1.0625rem;
     line-height: 1.6;
   }
-  :focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
-    border-radius: 4px;
+  :focus-visible,
+  :where(a, button, [role="button"], input, select, textarea, summary):focus-visible {
+    outline: 2px solid var(--ring) !important;
+    outline-offset: 2px !important;
   }
   ::selection {
     background: color-mix(in srgb, var(--primary) 28%, transparent);
@@ -153,7 +153,7 @@
 
 /* ---------- Type scale (Bricolage, optical sizes) ---------- */
 .display-name {
-  font-size: clamp(2.75rem, 1.6rem + 6.2vw, 6.5rem);
+  font-size: clamp(3.4rem, 1.9rem + 6vw, 6.5rem);
   line-height: 0.92;
   letter-spacing: -0.035em;
   font-weight: 760;

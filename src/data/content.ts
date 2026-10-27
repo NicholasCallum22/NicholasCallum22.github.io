@@ -169,8 +169,8 @@ export const results: Result[] = [
     slug: "topology-bracket",
   },
   {
-    figure: "2.85% and 4.43%",
-    what: "Deviation of simulated Chapman-Jouguet detonation velocity and pressure from NASA CEA and Caltech reference data.",
+    figure: "Within 4.5%",
+    what: "Simulated Chapman-Jouguet detonation velocity (2.85%) and pressure (4.43%) against NASA CEA and Caltech reference data.",
     where: "Independent project",
     scope: "Independent",
     evidence: "sim",
@@ -428,7 +428,7 @@ export const research = {
     },
   ],
   proposed:
-    "A direction I would like to pursue: extend the validated 2D hydrogen-air detonation model to a 3D annular rotating detonation engine combustor. This is a proposal. The 3D work has not been started.",
+    "Extend the validated 2D hydrogen-air detonation model to a 3D annular rotating detonation engine combustor. This is a proposal: the 3D work has not been started.",
   other: [
     { name: "Spur-gear pair design for an EV", detail: "Gear geometry, ratio selection and tolerances, with tooth bending and contact stress checks in ANSYS Mechanical. University of Leeds, Mar 2023.", ids: "SGT-01, SGT-02" },
     { name: "Waste plastic to 3D-printer filament machine", detail: "A seven-stage machine concept modelled in SolidWorks, with a 10 HP motor and 1:30 reducer sized for a 150 kg batch, and a cost analysis. BTech project, VIT.", ids: "WRM-01 to WRM-05" },

@@ -48,8 +48,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <Link to="/" className="flex min-w-0 items-center gap-2.5 rounded-md" aria-label={`${profile.name}, home`}>
             <Monogram className="size-9 shrink-0 group-data-[collapsible=icon]:size-8" />
             <span className="min-w-0 group-data-[collapsible=icon]:hidden">
-              <span className="block truncate font-semibold leading-tight">{profile.name}</span>
-              <span className="block truncate text-sm text-muted-foreground leading-tight">
+              <span className="block text-[0.95rem] font-semibold leading-tight">{profile.name}</span>
+              <span className="block text-[0.8rem] leading-tight text-muted-foreground">
                 {profile.role}
               </span>
             </span>
