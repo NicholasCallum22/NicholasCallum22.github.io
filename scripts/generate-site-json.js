@@ -61,7 +61,7 @@ if (site.repoUrl) {
 // 4. Output directory
 // ======================================
 const outDir = path.join(process.cwd(), "src", "data", "generated");
-ensureDirExists(outDir);
+fs.mkdirSync(outDir, { recursive: true });
 
 // ======================================
 // 5. Write JSON
