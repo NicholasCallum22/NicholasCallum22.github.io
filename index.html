@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nischal Prathipati | Mechanical Design Engineer</title>
+<meta name="description" content="Nischal Prathipati, mechanical design engineer: product design, GD&amp;T, FEA and DFM. Experience at JCB, Caterpillar and Pitti Engineering; MSc Automotive Engineering, University of Leeds.">
+<meta property="og:title" content="Nischal Prathipati | Mechanical Design Engineer">
+<meta property="og:description" content="Nischal Prathipati, mechanical design engineer: product design, GD&amp;T, FEA and DFM. Experience at JCB, Caterpillar and Pitti Engineering; MSc Automotive Engineering, University of Leeds.">
+<meta property="og:type" content="website">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single drawing sheet. Hero = name beside a self-drawing bracket; results as dimension callouts; projects as framed sheets; footer = title block. */
+:root {
+  --sheet: #F3F5F7;      /* page */
+  --panel: #FFFFFF;      /* sheet frames */
+  --ink: #14213D;        /* headings, linework */
+  --graphite: #4B5563;   /* body */
+  --datum: #1D5FD0;      /* links, focus, active */
+  --redline: #C2362B;    /* result callouts only */
+  --grid: #DCE2E9;       /* hairlines */
+  --grid-strong: #B9C3CF;
+  --hatch: rgba(20, 33, 61, 0.10);
+  --tint: rgba(29, 95, 208, 0.14);
+
+  --f-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --t-xs: 0.75rem; --t-sm: 0.875rem; --t-md: 1rem; --t-lg: 1.1875rem;
+  --t-xl: clamp(1.5rem, 1.1rem + 1.6vw, 2.125rem);
+  --t-hero: clamp(2.1rem, 0.9rem + 5.4vw, 5rem);
+
+  --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem; --s-5: 1.5rem; --s-6: 2rem; --s-7: 3rem; --s-8: 4.5rem; --s-9: 6rem;
+  --max: 72rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ui: 180ms;
+  --nav-h: 3.25rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sheet: #0F1726; --panel: #141F33; --ink: #E7ECF3; --graphite: #AEB9C7; --datum: #79A7FF; --redline: #FF7E70;
+    --grid: #26324A; --grid-strong: #3A4864; --hatch: rgba(231, 236, 243, 0.08); --tint: rgba(121, 167, 255, 0.18); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --sheet: #0F1726; --panel: #141F33; --ink: #E7ECF3; --graphite: #AEB9C7; --datum: #79A7FF; --redline: #FF7E70;
+  --grid: #26324A; --grid-strong: #3A4864; --hatch: rgba(231, 236, 243, 0.08); --tint: rgba(121, 167, 255, 0.18); color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 1rem); }
+body {
+  background: var(--sheet); color: var(--graphite);
+  font-family: var(--f-body); font-size: var(--t-md); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--sheet); }
+.wrap { max-width: var(--max); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-display); color: var(--ink); line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: var(--t-xl); font-weight: 700; font-stretch: 112%; letter-spacing: -0.01em; }
+h3 { font-size: var(--t-lg); font-weight: 650; }
+p { margin: 0; }
+a { color: var(--datum); text-underline-offset: 0.18em; text-decoration-thickness: 1px; transition: color var(--ui) var(--ease), text-decoration-color var(--ui) var(--ease); }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--datum); outline-offset: 3px; border-radius: 2px; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--graphite); }
+.skip { position: absolute; left: -999px; top: 0; background: var(--panel); color: var(--ink); padding: var(--s-2) var(--s-3); z-index: 30; }
+.skip:focus { left: max(16px, env(safe-area-inset-left, 0px)); top: calc(env(safe-area-inset-top, 0px) + 8px); }
+
+/* ---------- Nav ---------- */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--sheet) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--grid); }
+.nav .wrap { display: flex; align-items: center; gap: var(--s-5); min-height: var(--nav-h); }
+.brand { font-family: var(--f-mono); font-weight: 600; font-size: var(--t-sm); color: var(--ink); text-decoration: none; white-space: nowrap; letter-spacing: 0.02em; }
+.nav ul { list-style: none; display: flex; gap: var(--s-5); margin: 0 0 0 auto; padding: 0; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.nav ul::-webkit-scrollbar { display: none; }
+.nav li a { font-size: var(--t-sm); color: var(--graphite); text-decoration: none; white-space: nowrap; padding-block: var(--s-2); display: inline-block; border-bottom: 2px solid transparent; transition: color var(--ui) var(--ease), border-color var(--ui) var(--ease); }
+.nav li a:hover { color: var(--ink); border-bottom-color: var(--grid-strong); }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: var(--s-7) var(--s-6); }
+.hero-text { container-type: inline-size; min-width: 0; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: var(--s-7); align-items: center; }
+.hero h1 { font-size: min(var(--t-hero), 11.5cqi); font-weight: 800; font-stretch: 125%; letter-spacing: -0.015em; line-height: 0.98; text-transform: uppercase; }
+.hero h1 span { display: block; }
+.role { margin-top: var(--s-4); font-family: var(--f-display); font-size: var(--t-xl); font-weight: 500; font-stretch: 90%; color: var(--ink); }
+.lede { margin-top: var(--s-4); max-width: 34rem; font-size: var(--t-lg); line-height: 1.55; }
+.facts { margin: var(--s-5) 0 0; padding: 0; list-style: none; display: grid; gap: var(--s-1); font-family: var(--f-mono); font-size: var(--t-sm); color: var(--graphite); }
+.facts li { display: flex; gap: var(--s-3); }
+.facts b { color: var(--ink); font-weight: 500; min-width: 6.5rem; }
+.actions { margin-top: var(--s-5); display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.btn { display: inline-flex; align-items: center; gap: var(--s-2); font-family: var(--f-body); font-size: var(--t-sm); font-weight: 600; padding: 0.7rem 1.1rem; border: 1.5px solid var(--ink); color: var(--ink); background: transparent; text-decoration: none; cursor: pointer; border-radius: 0; transition: background var(--ui) var(--ease), color var(--ui) var(--ease); }
+.btn:hover { background: var(--ink); color: var(--sheet); }
+.btn.primary { background: var(--ink); color: var(--sheet); }
+.btn.primary:hover { background: var(--datum); border-color: var(--datum); color: #fff; }
+
+.drawing { margin: 0; }
+.drawing svg { width: 100%; height: auto; display: block; background: var(--panel); border: 1px solid var(--grid-strong); }
+.drawing figcaption { margin-top: var(--s-2); font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); }
+.ln { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.ln-thin { fill: none; stroke: var(--ink); stroke-width: 0.9; }
+.ln-frame { fill: none; stroke: var(--grid-strong); stroke-width: 1; }
+.ln-center { fill: none; stroke: var(--datum); stroke-width: 0.9; stroke-dasharray: 14 3 2 3; }
+.ln-red { fill: none; stroke: var(--redline); stroke-width: 1.2; }
+.fill-red { fill: var(--redline); }
+.fill-ink { fill: var(--ink); }
+.body-fill { fill: var(--hatch); }
+.svg-t { font-family: var(--f-mono); font-size: 12px; fill: var(--ink); }
+.svg-t.red { fill: var(--redline); font-weight: 600; }
+.svg-t.sm { font-size: 10px; fill: var(--graphite); }
+
+/* One orchestrated moment: the drawing draws itself in */
+@media (prefers-reduced-motion: no-preference) {
+  .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 820ms var(--ease) forwards; }
+  .d2 { animation-delay: 120ms; } .d3 { animation-delay: 240ms; }
+  .late { animation: appear 300ms var(--ease) 640ms both; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+}
+
+/* ---------- Sections ---------- */
+section { padding-block: var(--s-8); border-top: 1px solid var(--grid); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-2); margin-bottom: var(--s-6); max-width: 46rem; }
+.sec-head p { font-size: var(--t-md); }
+
+/* Results as dimension callouts */
+.results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--grid-strong); border-left: 1px solid var(--grid); }
+.result { padding: var(--s-5) var(--s-5) var(--s-5); border-right: 1px solid var(--grid); border-bottom: 1px solid var(--grid); display: grid; gap: var(--s-2); align-content: start; min-width: 0; }
+.result .val { font-family: var(--f-mono); font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); font-weight: 600; color: var(--redline); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.dim { display: block; width: 100%; height: 14px; }
+.dim line, .dim path { stroke: var(--redline); stroke-width: 1.2; fill: none; }
+.dim .head { fill: var(--redline); stroke: none; }
+.result p { font-size: var(--t-sm); color: var(--graphite); }
+.result .src { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--ink); letter-spacing: 0.02em; }
+
+/* Experience timeline */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.job { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: var(--s-6); padding-block: var(--s-6); border-top: 1px solid var(--grid); position: relative; }
+.job:first-child { border-top: 0; padding-top: 0; }
+.when { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--ink); line-height: 1.5; }
+.when span { display: block; color: var(--graphite); font-size: var(--t-xs); margin-top: var(--s-1); }
+.job h3 { display: flex; flex-wrap: wrap; gap: 0 var(--s-3); align-items: baseline; }
+.job h3 small { font-family: var(--f-body); font-weight: 400; font-size: var(--t-md); color: var(--graphite); }
+.ctx { margin-top: var(--s-1); font-size: var(--t-sm); color: var(--graphite); }
+ul.pts { margin: var(--s-3) 0 0; padding-left: 1.1rem; display: grid; gap: var(--s-2); max-width: 46rem; }
+ul.pts li::marker { color: var(--grid-strong); }
+ul.pts b { color: var(--ink); font-weight: 600; }
+details { margin-top: var(--s-3); max-width: 46rem; }
+summary { cursor: pointer; font-family: var(--f-mono); font-size: var(--t-sm); color: var(--datum); list-style: none; display: inline-flex; gap: var(--s-2); align-items: center; padding-block: var(--s-1); }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "+"; display: inline-block; width: 1ch; transition: transform var(--ui) var(--ease); }
+details[open] summary::before { transform: rotate(45deg); }
+details ul.pts { margin-top: var(--s-2); }
+@media (prefers-reduced-motion: no-preference) {
+  details[open] ul.pts { animation: open var(--ui) var(--ease); }
+  @keyframes open { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+}
+
+/* Project sheets */
+.sheets { display: grid; gap: var(--s-6); }
+.sheet { background: var(--panel); border: 1px solid var(--grid-strong); display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); }
+.sheet figure { margin: 0; padding: var(--s-5); border-right: 1px solid var(--grid); display: grid; align-content: center; min-width: 0; }
+.sheet figure svg { width: 100%; height: auto; display: block; }
+.sheet .txt { padding: var(--s-5) var(--s-6) var(--s-5); display: grid; gap: var(--s-3); align-content: start; min-width: 0; }
+.tblock { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); border-bottom: 1px solid var(--grid); padding-bottom: var(--s-3); }
+.tblock b { color: var(--ink); font-weight: 500; }
+.tags { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; padding: 0; list-style: none; }
+.tags li { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--ink); border: 1px solid var(--grid-strong); padding: 0.15rem 0.45rem; }
+.keyfig { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); font-family: var(--f-mono); font-size: var(--t-sm); }
+.keyfig span { color: var(--redline); font-weight: 600; }
+.note { font-size: var(--t-xs); font-family: var(--f-mono); color: var(--graphite); }
+
+/* Research list */
+.research { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--s-7); }
+.rs { padding-block: var(--s-5); border-top: 1px solid var(--grid); display: grid; gap: var(--s-2); align-content: start; min-width: 0; }
+.rs.feature { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-2) var(--s-7); }
+.rs .meta { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); }
+.rs .hl { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--redline); font-weight: 600; }
+.rs ul.pts { margin-top: var(--s-1); }
+
+/* Teams */
+.teams { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-7); }
+.tmeta { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); letter-spacing: 0.02em; }
+.team { display: grid; gap: var(--s-2); align-content: start; min-width: 0; }
+
+/* Skills BOM */
+.bom-wrap { overflow-x: auto; border: 1px solid var(--grid-strong); background: var(--panel); }
+table.bom { width: 100%; border-collapse: collapse; min-width: 40rem; font-size: var(--t-sm); }
+.bom th, .bom td { text-align: left; vertical-align: top; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--grid); }
+.bom th { font-family: var(--f-mono); font-weight: 500; font-size: var(--t-xs); color: var(--ink); letter-spacing: 0.04em; background: color-mix(in srgb, var(--grid) 45%, var(--panel)); }
+.bom td:first-child { font-family: var(--f-mono); color: var(--ink); width: 3.5rem; }
+.bom td:nth-child(2) { color: var(--ink); font-weight: 600; width: 11rem; }
+.bom td:last-child { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); width: 13rem; }
+.bom tr:last-child td { border-bottom: 0; }
+
+/* Education etc. */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-7); }
+.trio > div { display: grid; gap: var(--s-3); align-content: start; min-width: 0; }
+.trio h3 { font-size: var(--t-md); font-family: var(--f-mono); font-weight: 500; letter-spacing: 0.02em; }
+.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
+.plain li { display: grid; gap: 2px; }
+.plain b { color: var(--ink); font-weight: 600; }
+.plain .meta { font-family: var(--f-mono); font-size: var(--t-xs); }
+
+/* Contact */
+.contact .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--s-7); align-items: end; }
+.email { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); margin-top: var(--s-4); }
+.email code { font-family: var(--f-mono); font-size: clamp(1rem, 0.8rem + 1vw, 1.5rem); color: var(--ink); user-select: all; overflow-wrap: anywhere; }
+.copy-status { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--datum); min-height: 1.2em; }
+
+/* Title block footer */
+footer { padding-block: var(--s-6) var(--s-7); }
+.titleblock { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; border: 1.5px solid var(--ink); font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); }
+.titleblock > div { padding: var(--s-2) var(--s-3); border-right: 1px solid var(--grid-strong); border-bottom: 1px solid var(--grid-strong); min-width: 0; }
+.titleblock > div:nth-child(4n) { border-right: 0; }
+.titleblock > div:nth-last-child(-n+4) { border-bottom: 0; }
+.titleblock b { display: block; color: var(--ink); font-weight: 500; font-size: var(--t-sm); overflow-wrap: anywhere; }
+
+/* ---------- Illustration parts ---------- */
+.jacket { fill: none; stroke: var(--datum); stroke-width: 7; stroke-dasharray: 10 6; opacity: 0.55; }
+.slot { fill: var(--panel); stroke: var(--ink); stroke-width: 0.8; }
+.magnet { fill: var(--ink); opacity: 0.55; }
+.steel { fill: url(#hatch); stroke: var(--ink); stroke-width: 1.5; }
+.rubber, .oil, .cell { fill: var(--tint); stroke: var(--ink); stroke-width: 1.4; }
+.oil { stroke: none; }
+.cell { stroke: var(--datum); stroke-width: 0.8; }
+.gear, .mass { fill: var(--hatch); stroke: var(--ink); stroke-width: 1.4; }
+.active { fill: none; stroke: var(--redline); stroke-width: 1.6; }
+.ground, .arrow-ln { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+.hatchline { stroke: var(--grid-strong); stroke-width: 1; fill: none; }
+.stream { fill: none; stroke: var(--datum); stroke-width: 1; stroke-dasharray: 6 4; opacity: 0.75; }
+.fig { margin: 0; background: var(--panel); border: 1px solid var(--grid-strong); padding: var(--s-4); display: grid; gap: var(--s-2); align-content: start; min-width: 0; }
+.fig svg { width: 100%; height: auto; display: block; }
+.fig figcaption { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); }
+
+/* Nav extras */
+.nav li a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--datum); }
+.theme-btn { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--ink); background: transparent; border: 1px solid var(--grid-strong); padding: 0.3rem 0.55rem; cursor: pointer; white-space: nowrap; transition: border-color var(--ui) var(--ease); }
+.theme-btn:hover { border-color: var(--ink); }
+
+/* About + process */
+.about { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: var(--s-7); align-items: start; }
+.about .prose { display: grid; gap: var(--s-4); max-width: 40rem; font-size: var(--t-lg); line-height: 1.6; }
+.now { border: 1px solid var(--grid-strong); background: var(--panel); padding: var(--s-5); display: grid; gap: var(--s-3); }
+.now h3 { font-family: var(--f-mono); font-size: var(--t-sm); font-weight: 500; letter-spacing: 0.04em; }
+.now ul { margin: 0; padding-left: 1.1rem; display: grid; gap: var(--s-2); font-size: var(--t-sm); }
+.process { list-style: none; margin: var(--s-7) 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 2px solid var(--ink); counter-reset: step; }
+.process li { padding: var(--s-4) var(--s-3) 0 0; display: grid; gap: var(--s-2); align-content: start; position: relative; min-width: 0; }
+.process li::before { counter-increment: step; content: counter(step, decimal-leading-zero); font-family: var(--f-mono); font-size: var(--t-xs); color: var(--datum); }
+.process li::after { content: ""; position: absolute; top: -6px; left: 0; width: 10px; height: 10px; background: var(--sheet); border: 2px solid var(--ink); border-radius: 50%; }
+.process b { color: var(--ink); font-family: var(--f-display); font-size: var(--t-md); }
+.process span { font-size: var(--t-sm); }
+.process em { font-style: normal; font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); }
+
+/* Career route */
+.route { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); position: relative; }
+.route::before { content: ""; position: absolute; left: 0; right: 0; top: 2.35rem; height: 3px; background: linear-gradient(to right, var(--ink) 0 42.8%, var(--datum) 42.8% 85.7%, var(--ink) 85.7%); }
+.route li { display: grid; grid-template-rows: auto 1.6rem auto; gap: var(--s-2); padding-right: var(--s-3); min-width: 0; }
+.route .yr { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--ink); font-weight: 500; }
+.route .stop { width: 16px; height: 16px; border-radius: 50%; background: var(--sheet); border: 3px solid var(--ink); align-self: center; position: relative; z-index: 1; }
+.route li.uk .stop { border-color: var(--datum); }
+.route b { color: var(--ink); font-size: var(--t-sm); display: block; }
+.route span { font-size: var(--t-xs); font-family: var(--f-mono); }
+.route-key { margin-top: var(--s-4); display: flex; flex-wrap: wrap; gap: var(--s-5); font-family: var(--f-mono); font-size: var(--t-xs); }
+.route-key i { display: inline-block; width: 22px; height: 3px; vertical-align: middle; margin-right: var(--s-2); background: var(--ink); }
+.route-key i.uk { background: var(--datum); }
+
+/* Experience with figures */
+.job.has-fig { grid-template-columns: 11rem minmax(0, 1fr); }
+.job.has-fig .fig { grid-column: 2; max-width: 34rem; margin-top: var(--s-2); }
+.job .fig { align-self: start; }
+.tools { margin-top: var(--s-3); }
+
+/* Case-study details in project sheets */
+details.case { margin-top: var(--s-1); border-top: 1px solid var(--grid); padding-top: var(--s-3); }
+.case-body { display: grid; gap: var(--s-3); margin-top: var(--s-3); font-size: var(--t-sm); }
+.eq { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--ink); background: var(--sheet); border-left: 3px solid var(--datum); padding: var(--s-2) var(--s-3); overflow-x: auto; white-space: nowrap; }
+.case-body dl { margin: 0; display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: var(--s-2) var(--s-4); }
+.case-body dt { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--ink); padding-top: 2px; }
+.case-body dd { margin: 0; }
+
+/* Research v2 */
+.rs-feature { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: var(--s-6); align-items: start; padding-bottom: var(--s-6); }
+.rs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6) var(--s-7); border-top: 1px solid var(--grid); padding-top: var(--s-6); }
+.rs-card { display: grid; gap: var(--s-3); align-content: start; min-width: 0; }
+.rs-card .meta, .rs-feature .meta { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--graphite); }
+.rs-card .hl, .rs-feature .hl { font-family: var(--f-mono); font-size: var(--t-sm); color: var(--redline); font-weight: 600; }
+.rs-also { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5) var(--s-7); margin-top: var(--s-6); border-top: 1px solid var(--grid); padding-top: var(--s-5); }
+.rs-also h3 { font-size: var(--t-md); }
+.rs-also p { font-size: var(--t-sm); margin-top: var(--s-1); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .about, .rs-feature { grid-template-columns: minmax(0, 1fr); }
+  .process { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: var(--s-5); border-top: 0; }
+  .process li { border-top: 2px solid var(--ink); }
+  .route { grid-template-columns: minmax(0, 1fr); gap: 0; padding-left: 1.6rem; }
+  .route::before { left: 7px; right: auto; top: 0; bottom: 0; width: 3px; height: auto; background: linear-gradient(to bottom, var(--ink) 0 42.8%, var(--datum) 42.8% 85.7%, var(--ink) 85.7%); }
+  .route li { grid-template-rows: none; grid-template-columns: 4.5rem minmax(0, 1fr); gap: var(--s-3); padding-block: var(--s-2); position: relative; }
+  .route .stop { position: absolute; left: calc(-1.6rem + 1px); top: 0.75rem; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+  .results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sheet { grid-template-columns: minmax(0, 1fr); }
+  .sheet figure { border-right: 0; border-bottom: 1px solid var(--grid); }
+  .trio { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .contact .wrap { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+}
+@media (max-width: 640px) {
+  .process { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .job.has-fig { grid-template-columns: minmax(0, 1fr); }
+  .job.has-fig .fig { grid-column: auto; }
+  .rs-grid, .rs-also { grid-template-columns: minmax(0, 1fr); }
+  .case-body dl { grid-template-columns: minmax(0, 1fr); gap: 0 0; }
+  .case-body dd { margin-bottom: var(--s-2); }
+  .theme-btn { display: none; }
+  section { padding-block: var(--s-7); }
+  .hero { padding-block: var(--s-5) var(--s-5); }
+  .results, .research, .teams, .trio { grid-template-columns: minmax(0, 1fr); }
+  .rs.feature { grid-template-columns: minmax(0, 1fr); }
+  .job { grid-template-columns: minmax(0, 1fr); gap: var(--s-2); }
+  .sheet .txt { padding: var(--s-4); }
+  .sheet figure { padding: var(--s-4); }
+  .titleblock { grid-template-columns: 1fr 1fr; }
+  .titleblock > div:nth-child(4n) { border-right: 1px solid var(--grid-strong); }
+  .titleblock > div:nth-child(2n) { border-right: 0; }
+  .titleblock > div:nth-last-child(-n+4) { border-bottom: 1px solid var(--grid-strong); }
+  .titleblock > div:nth-last-child(-n+2) { border-bottom: 0; }
+  .nav ul { gap: var(--s-4); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill: var(--panel)"/><path d="M0 0 V6" style="stroke: var(--grid-strong); stroke-width: 1.4"/></pattern></defs></svg>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">N. PRATHIPATI</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-btn" id="theme" type="button" aria-label="Colour theme: automatic. Click to change.">Theme: auto</button>
+  </div>
+</nav>
+
+<main id="main">
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-text">
+      <h1><span>Nischal</span><span>Prathipati</span></h1>
+      <p class="role">Mechanical design engineer</p>
+      <p class="lede">I design hydraulic, drivetrain and EV-motor components in Siemens NX, SolidWorks and CATIA, prove them with FEA, and carry them through GD&amp;T and supplier production.</p>
+      <ul class="facts">
+        <li><b>Industry</b><span>JCB · Caterpillar · Pitti Engineering</span></li>
+        <li><b>Education</b><span>MSc Automotive Engineering, Leeds</span></li>
+        <li><b>Based</b><span>Hyderabad, India · open to relocation</span></li>
+        <li><b>Status</b><span>Available now</span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn primary" href="#contact">Get in touch</a>
+        <a class="btn" href="https://www.linkedin.com/in/nischalprathipati" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+
+    <figure class="drawing">
+      <svg viewBox="0 0 600 430" role="img" aria-labelledby="dwg-t dwg-d">
+        <title id="dwg-t">Technical drawing of a topology-optimised mounting bracket</title>
+        <desc id="dwg-d">Front view of an L-shaped steel bracket with triangular lightening cut-outs, four mounting holes and callouts: mass down 29 percent, factor of safety 2.15 at 162 MPa peak stress, first natural frequency 142 hertz, R6 fillets. All figures simulated.</desc>
+        <rect class="ln-frame" x="8" y="8" width="584" height="414"/>
+        <g class="ln-frame"><path d="M158 8v8M308 8v8M458 8v8M158 422v-8M308 422v-8M458 422v-8M8 145h8M8 285h8M592 145h-8M592 285h-8"/></g>
+        <!-- body -->
+        <path class="body-fill late" d="M70 92 H132 V142 L402 330 H442 V370 H70 Z"/>
+        <path class="ln draw" pathLength="1" d="M70 92 H132 V142 L402 330 H442 V370 H70 Z"/>
+        <!-- cut-outs with R6 corners -->
+        <path class="ln draw d2" pathLength="1" d="M156 196 L156 306 Q156 312 162 312 L246 312 Q254 312 249 306 L166 194 Q156 186 156 196 Z"/>
+        <path class="ln draw d2" pathLength="1" d="M282 276 L282 306 Q282 312 288 312 L336 312 Q344 312 338 307 L292 271 Q282 266 282 276 Z"/>
+        <!-- holes -->
+        <g class="d3">
+          <circle class="ln draw d3" pathLength="1" cx="101" cy="122" r="9"/>
+          <circle class="ln draw d3" pathLength="1" cx="101" cy="230" r="9"/>
+          <circle class="ln draw d3" pathLength="1" cx="230" cy="350" r="9"/>
+          <circle class="ln draw d3" pathLength="1" cx="400" cy="350" r="9"/>
+        </g>
+        <!-- centre lines -->
+        <g class="ln-center late">
+          <path d="M84 122h34M101 105v34M84 230h34M101 213v34M213 350h34M230 333v34M383 350h34M400 333v34"/>
+          <path d="M101 80v300"/>
+        </g>
+        <!-- callouts -->
+        <g class="late">
+          <path class="ln-thin" d="M158 300 L118 404 H70"/>
+          <text class="svg-t" x="70" y="399">R6 TYP.</text>
+
+          <path class="ln-red" d="M236 248 L300 196 H462"/>
+          <circle class="fill-red" cx="236" cy="248" r="2.6"/>
+          <text class="svg-t red" x="306" y="190">MASS −29% (SIM.)</text>
+
+          <path class="ln-red" d="M360 318 L420 262 H570"/>
+          <circle class="fill-red" cx="360" cy="318" r="2.6"/>
+          <text class="svg-t red" x="426" y="256">FoS 2.15 · 162 MPa</text>
+
+          <path class="ln-red" d="M126 108 L190 66 H360"/>
+          <circle class="fill-red" cx="126" cy="108" r="2.6"/>
+          <text class="svg-t red" x="196" y="60">f₁ 142 Hz (+16%)</text>
+
+          <!-- mini title block -->
+          <rect class="ln-thin" x="452" y="378" width="132" height="36"/>
+          <text class="svg-t sm" x="458" y="392">BRACKET, MTG</text>
+          <text class="svg-t sm" x="458" y="407">ANSYS → FUSION 360</text>
+        </g>
+      </svg>
+      <figcaption>From the independent topology-optimisation project. All figures simulated.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about">
+      <div>
+        <h2>About</h2>
+        <div class="prose" style="margin-top:var(--s-4)">
+          <p>My work sits where CAD, analysis and the shop floor meet: drawings suppliers can make first time, FEA that agrees with the test rig, and design changes that hold up in endurance testing.</p>
+          <p>I've done this on off-highway hydraulics and drivetrains at JCB, powertrain mounts and supplier change control at Caterpillar, and liquid-cooled EV traction motors at Pitti Engineering, after an MSc in Automotive Engineering at the University of Leeds.</p>
+          <p>Since February 2026 I've been back in Hyderabad, running independent projects in tolerance analysis, moulding DFM, topology optimisation and detonation CFD while I look for my next product design role.</p>
+        </div>
+      </div>
+      <aside class="now" aria-labelledby="now-h">
+        <h3 id="now-h">NOW, OCT 2026</h3>
+        <ul>
+          <li>Looking for product and mechanical design engineering roles in India or abroad, available immediately.</li>
+          <li>Building out four independent projects, with working Creo, SolidWorks, ANSYS, Fusion 360 and OpenFOAM files ready to walk through.</li>
+          <li>Exploring doctoral research in reacting flows, starting from a validated hydrogen-air detonation model.</li>
+        </ul>
+      </aside>
+    </div>
+    <ol class="process" aria-label="How I take a part from requirement to production">
+      <li><b>Requirements</b><span>Loads, envelope, interfaces and failure modes up front.</span><em>DFMEA at JCB, Caterpillar, Pitti</em></li>
+      <li><b>Concept and CAD</b><span>Parametric models and top-down assemblies.</span><em>Siemens NX, SolidWorks, CATIA, Creo</em></li>
+      <li><b>Analysis</b><span>Structural, thermal, non-linear and modal FEA; CFD where flow matters.</span><em>ANSYS, OpenFOAM</em></li>
+      <li><b>Drawings and DFM</b><span>GD&amp;T that reflects function and can be made and inspected.</span><em>BS 8888, ASME Y14.5</em></li>
+      <li><b>Suppliers and change</b><span>ECOs, tolerance reviews and root-cause fixes with the shop floor.</span><em>Caterpillar, Pitti</em></li>
+      <li><b>Test and correlation</b><span>Compare the model with the rig, then update the model or the part.</span><em>Within 6% at Caterpillar</em></li>
+    </ol>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Results, with their qualifiers</h2>
+      <p>Outcomes from my industrial roles. Where a figure was reported by the team or estimated, it says so.</p>
+    </div>
+    <div class="results">
+      <div class="result">
+        <div class="val">22% → 4%</div>
+        <svg class="dim" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><line x1="1" y1="1" x2="1" y2="13"/><line x1="199" y1="1" x2="199" y2="13"/><line x1="8" y1="7" x2="192" y2="7"/><path class="head" d="M2 7 L10 4 L10 10 Z"/><path class="head" d="M198 7 L190 4 L190 10 Z"/></svg>
+        <p>Coolant-jacket hydrostatic test failure rate on an EV traction-motor housing: an 18-percentage-point cut after an O-ring gland and GD&amp;T redesign.</p>
+        <span class="src">PITTI ENGINEERING</span>
+      </div>
+      <div class="result">
+        <div class="val">within 6%</div>
+        <svg class="dim" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><line x1="1" y1="1" x2="1" y2="13"/><line x1="199" y1="1" x2="199" y2="13"/><line x1="8" y1="7" x2="192" y2="7"/><path class="head" d="M2 7 L10 4 L10 10 Z"/><path class="head" d="M198 7 L190 4 L190 10 Z"/></svg>
+        <p>Non-linear ANSYS model of a powertrain vibration mount correlated to hydraulic test-rig deflection data.</p>
+        <span class="src">CATERPILLAR</span>
+      </div>
+      <div class="result">
+        <div class="val">+25% life</div>
+        <svg class="dim" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><line x1="1" y1="1" x2="1" y2="13"/><line x1="199" y1="1" x2="199" y2="13"/><line x1="8" y1="7" x2="192" y2="7"/><path class="head" d="M2 7 L10 4 L10 10 Z"/><path class="head" d="M198 7 L190 4 L190 10 Z"/></svg>
+        <p>Reported component-life extension from a reinforced isolation design, after investigating high-frequency fatigue failures.</p>
+        <span class="src">CATERPILLAR · REPORTED</span>
+      </div>
+      <div class="result">
+        <div class="val">−14% errors</div>
+        <svg class="dim" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><line x1="1" y1="1" x2="1" y2="13"/><line x1="199" y1="1" x2="199" y2="13"/><line x1="8" y1="7" x2="192" y2="7"/><path class="head" d="M2 7 L10 4 L10 10 Z"/><path class="head" d="M198 7 L190 4 L190 10 Z"/></svg>
+        <p>Reported fall in supplier dimensional errors across 40+ Siemens NX drawings to BS 8888 and ASME Y14.5.</p>
+        <span class="src">JCB · REPORTED</span>
+      </div>
+      <div class="result">
+        <div class="val">−9 dB NVH</div>
+        <svg class="dim" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><line x1="1" y1="1" x2="1" y2="13"/><line x1="199" y1="1" x2="199" y2="13"/><line x1="8" y1="7" x2="192" y2="7"/><path class="head" d="M2 7 L10 4 L10 10 Z"/><path class="head" d="M198 7 L190 4 L190 10 Z"/></svg>
+        <p>Journal-bearing clearance tightened from 0.05 mm to 0.03 mm during endurance testing, raising dynamic stiffness.</p>
+        <span class="src">PITTI ENGINEERING</span>
+      </div>
+      <div class="result">
+        <div class="val">≈ US$15,000</div>
+        <svg class="dim" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><line x1="1" y1="1" x2="1" y2="13"/><line x1="199" y1="1" x2="199" y2="13"/><line x1="8" y1="7" x2="192" y2="7"/><path class="head" d="M2 7 L10 4 L10 10 Z"/><path class="head" d="M198 7 L190 4 L190 10 Z"/></svg>
+        <p>Pilot-build rework avoided by design countermeasures from packaging and Digital Mock-Up clash reviews.</p>
+        <span class="src">JCB · APPROXIMATE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="route">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Route so far</h2>
+      <p>Study and work across India and the United Kingdom, in order.</p>
+    </div>
+    <ol class="route">
+      <li><span class="yr">2018</span><i class="stop" aria-hidden="true"></i><div><b>VIT Vellore</b><span>BTech Mechanical</span></div></li>
+      <li><span class="yr">2019</span><i class="stop" aria-hidden="true"></i><div><b>BHEL</b><span>Intern, Vizag</span></div></li>
+      <li><span class="yr">2020</span><i class="stop" aria-hidden="true"></i><div><b>Eco Titans, Celerity</b><span>Student teams</span></div></li>
+      <li class="uk"><span class="yr">2022</span><i class="stop" aria-hidden="true"></i><div><b>University of Leeds</b><span>MSc Automotive</span></div></li>
+      <li><span class="yr">2023</span><i class="stop" aria-hidden="true"></i><div><b>Pitti, Hyderabad</b><span>Component Engineer</span></div></li>
+      <li class="uk"><span class="yr">2024</span><i class="stop" aria-hidden="true"></i><div><b>Caterpillar, then JCB</b><span>UK roles to Jan 2026</span></div></li>
+      <li><span class="yr">2026</span><i class="stop" aria-hidden="true"></i><div><b>Hyderabad</b><span>Independent projects</span></div></li>
+    </ol>
+    <p class="route-key"><span><i></i>India</span><span><i class="uk"></i>United Kingdom</span></p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Experience</h2>
+      <p>Just under two years across off-highway hydraulics, powertrain components and EV traction motors, plus a 2019 internship.</p>
+    </div>
+    <ol class="timeline" reversed>
+      <li class="job has-fig">
+        <div class="when">Nov 2025 – Jan 2026<span>United Kingdom</span></div>
+        <div>
+          <h3>JCB <small>Junior Mechanical Design Engineer</small></h3>
+          <p class="ctx">Off-highway machinery: hydraulic and drivetrain subsystems.</p>
+          <ul class="pts">
+            <li>Produced and reviewed <b>40+</b> CAD models and manufacturing drawings for hydraulic components, drivetrain subsystems and global valve assemblies in Siemens NX to BS 8888 and ASME Y14.5, contributing to a reported <b>14%</b> reduction in supplier dimensional errors.</li>
+            <li>Managed packaging studies and Digital Mock-Up reviews to resolve clashes between hydraulic and drivetrain components, avoiding approximately <b>US$15,000</b> of pilot-build rework.</li>
+            <li>Cut the mass of a cast-iron mounting bracket by <b>11%</b> using structural FEA, while keeping a <b>2.5</b> factor of safety under a simulated 5 g shock load.</li>
+          </ul>
+          <details>
+            <summary>3 more</summary>
+            <ul class="pts">
+              <li>Coordinated CAD outputs and design changes with offshore design teams in India using top-down assembly practice and interface-control checkpoints, reducing design-iteration turnaround time by <b>15%</b>.</li>
+              <li>Performed DFMEA risk assessments to catch potential failure modes early in off-highway machinery.</li>
+              <li>Reviewed physical machine-performance data against digital models with Test and Development engineers, informing design changes reported to improve durability and efficiency.</li>
+            </ul>
+          </details>
+          <ul class="tags tools"><li>Siemens NX</li><li>BS 8888</li><li>ASME Y14.5</li><li>DMU</li><li>DFMEA</li><li>FEA</li></ul>
+        </div>
+        <figure class="fig"><svg viewBox="0 0 560 240" role="img" aria-labelledby="isectionthroughah"><title id="isectionthroughah">Section through a hydraulic cylinder</title><desc>Barrel, cap, gland, piston, rod and two ports drawn as a section, with notes on the 40-plus Siemens NX drawings and Digital Mock-Up clash reviews.</desc><rect class="steel" x="40" y="80" width="250" height="16"/><rect class="steel" x="40" y="164" width="250" height="16"/><rect class="steel" x="24" y="72" width="18" height="116"/><rect class="steel" x="288" y="72" width="22" height="116"/><rect class="oil" x="42" y="96" width="118" height="68"/><rect class="steel" x="160" y="96" width="26" height="68"/><rect class="ln" x="186" y="118" width="210" height="24" style="fill: var(--panel)"/><path class="ln-center" d="M14 130 H420"/><rect class="ln" x="70" y="56" width="18" height="24"/><rect class="ln" x="250" y="56" width="18" height="24"/><text class="svg-t sm" x="62" y="50">PORT A</text><text class="svg-t sm" x="242" y="50">PORT B</text><path class="ln-thin" d="M24 206 V196 M310 206 V196 M28 202 H306"/><path class="fill-ink" d="M24 202 l8 -3 v6z M310 202 l-8 -3 v6z"/><text class="svg-t sm" x="128" y="222">BS 8888 / ASME Y14.5 DRAWING SET</text><path class="ln-thin" d="M178 104 L330 40 H460"/><circle class="fill-ink" cx="178" cy="104" r="2.4"/><text class="svg-t" x="334" y="35">40+ DRAWINGS (NX)</text><path class="ln-thin" d="M392 128 L410 92 H470"/><circle class="fill-ink" cx="392" cy="128" r="2.4"/><text class="svg-t" x="414" y="87">DMU: CLASHES CLEARED</text></svg><figcaption>Schematic: hydraulic cylinder section.</figcaption></figure>
+      </li>
+      <li class="job has-fig">
+        <div class="when">Oct 2024 – Sep 2025<span>United Kingdom</span></div>
+        <div>
+          <h3>Caterpillar <small>Graduate Manufacturing Engineer</small></h3>
+          <p class="ctx">Powertrain components: the interface between R&amp;D and casting and machining suppliers.</p>
+          <ul class="pts">
+            <li>Investigated high-frequency fatigue failures in powertrain vibration mounts and supported a reinforced isolation design reported to extend component life by <b>25%</b>.</li>
+            <li>Validated a non-linear ANSYS Mechanical model of the mount (hyperelastic elastomer, frictional contact) against hydraulic test-rig data, bringing simulated peak deflection within <b>6%</b> of measurement.</li>
+            <li>Coordinated engineering change orders and GD&amp;T tolerance reviews between R&amp;D and external casting and machining suppliers.</li>
+            <li>Consolidated test-validation schedules into a unified PDM workflow in PTC Windchill, saving approximately <b>15 hours</b> per week of data retrieval.</li>
+          </ul>
+          <details>
+            <summary>3 more</summary>
+            <ul class="pts">
+              <li>Took part in cross-functional DFMEA workshops for powertrain couplings and contributed to PFMEA and statistical-process-control activities.</li>
+              <li>Investigated manufacturing deviations through root-cause reviews and revised CAD models and drawings where required.</li>
+              <li>Processed drivetrain and hydraulic engineering data with MATLAB and Python (NumPy).</li>
+            </ul>
+          </details>
+          <ul class="tags tools"><li>ANSYS Mechanical</li><li>Non-linear FEA</li><li>GD&amp;T</li><li>ECO</li><li>PTC Windchill</li><li>PFMEA</li><li>Python</li></ul>
+        </div>
+        <figure class="fig"><svg viewBox="0 0 480 280" role="img" aria-labelledby="isectionthroughan"><title id="isectionthroughan">Section through an elastomeric powertrain vibration mount</title><desc>Steel base and top plates bonded to a hyperelastic elastomer block, with a stud, load F and deflection delta. Callouts: simulation within 6 percent of rig, life extended 25 percent, reported.</desc><path class="ground" d="M20 250 H300"/><path class="hatchline" d="M30 250 l-10 12 M60 250 l-10 12 M90 250 l-10 12 M120 250 l-10 12 M150 250 l-10 12 M180 250 l-10 12 M210 250 l-10 12 M240 250 l-10 12 M270 250 l-10 12 M300 250 l-10 12"/><rect class="steel" x="50" y="226" width="220" height="24"/><path class="rubber" d="M80 226 L110 120 H210 L240 226 Z"/><rect class="steel" x="96" y="98" width="128" height="22"/><rect class="ln" x="150" y="62" width="20" height="36"/><path class="ln" d="M60 226 V250 M260 226 V250"/><path class="ln-center" d="M160 50 V262"/><path class="arrow-ln" d="M160 18 V54"/><path class="fill-ink" d="M160 60 l-6 -10 h12 z"/><text class="svg-t" x="170" y="34">F (PRELOAD + TORQUE REACTION)</text><path class="ln-thin" d="M230 98 H262 M230 112 H262 M256 82 V98 M256 112 V128"/><path class="fill-ink" d="M256 98 l-3 -7 h6z M256 112 l-3 7 h6z"/><text class="svg-t" x="266" y="110">δ</text><path class="ln-thin" d="M200 170 L300 160 H440"/><circle class="fill-ink" cx="200" cy="170" r="2.4"/><text class="svg-t" x="304" y="155">HYPERELASTIC ELASTOMER</text><path class="ln-red" d="M258 106 L300 72 H440"/><circle class="fill-red" cx="258" cy="106" r="2.4"/><text class="svg-t red" x="304" y="67">SIM vs RIG: WITHIN 6%</text><text class="svg-t sm" x="304" y="84">NON-LINEAR ANSYS MODEL</text><path class="ln-red" d="M250 238 L300 214 H440"/><circle class="fill-red" cx="250" cy="238" r="2.4"/><text class="svg-t red" x="304" y="209">LIFE +25% (REPORTED)</text></svg><figcaption>Schematic: elastomeric vibration mount.</figcaption></figure>
+      </li>
+      <li class="job has-fig">
+        <div class="when">Oct 2023 – Jun 2024<span>Hyderabad, India</span></div>
+        <div>
+          <h3>Pitti Engineering <small>Component Engineer</small></h3>
+          <p class="ctx">EV traction motors and powertrain components: stators, rotors, housings and shafts.</p>
+          <ul class="pts">
+            <li>Cut the hydrostatic coolant-jacket test failure rate from <b>22% to 4%</b> (11 to 2 failures per 50 units) by redesigning the O-ring gland (18–22% crush, Ra ≤ 1.6 µm) and tightening counterbore positional GD&amp;T in SolidWorks.</li>
+            <li>Raised calculated gravimetric power density by <b>9%</b> by cutting subassembly mass by about 8.3% at unchanged rated torque and power, and confirmed end-winding hot spots stayed below the Class H limit (180 °C) with thermal FEA.</li>
+            <li>Redesigned stator and rotor lamination stacks in SolidWorks and CATIA V5, cutting stamping material waste by a reported <b>15%</b>.</li>
+            <li>Tightened journal-bearing clearances from 0.05 mm to 0.03 mm in endurance testing, reducing operational NVH by <b>9 dB</b>.</li>
+          </ul>
+          <details>
+            <summary>4 more</summary>
+            <ul class="pts">
+              <li>Applied PFMEA to precision machining of heavily loaded shafts, holding runout within 15 µm and reducing rejection rates by <b>14%</b>.</li>
+              <li>Diagnosed a concentricity mismatch on the shop floor and delivered tooling countermeasures that prevented approximately <b>US$8,500</b> of prototype scrap.</li>
+              <li>Interpreted 100+ engineering drawings using GD&amp;T and resolved drawing ambiguities with cross-functional teams.</li>
+              <li>Performed structural and transient thermal FEA on high-speed rotating components to support design sign-off, and applied DFMEA to proposed changes.</li>
+            </ul>
+          </details>
+          <ul class="tags tools"><li>SolidWorks</li><li>CATIA V5</li><li>Thermal FEA</li><li>GD&amp;T</li><li>DFA</li><li>PFMEA</li></ul>
+        </div>
+        <figure class="fig"><svg viewBox="0 0 470 300" role="img" aria-labelledby="ischematicofaliqu"><title id="ischematicofaliqu">Schematic of a liquid-cooled EV traction motor, end view</title><desc>Stator housing with coolant jacket, laminated stator with slots, permanent-magnet rotor and shaft. Callouts: leak test failures 22 to 4 percent, lamination scrap down 15 percent, reported.</desc><circle class="ln" cx="160" cy="150" r="128"/><circle class="jacket" cx="160" cy="150" r="118"/><circle class="ln-thin" cx="160" cy="150" r="108"/><circle class="body-fill" cx="160" cy="150" r="107"/><circle class="ln" cx="160" cy="150" r="68" style="fill: var(--panel)"/><path class="slot" d="M230.0 147.7 L255.9 144.7 L255.9 155.3 L230.0 152.3 Z"/><path class="slot" d="M229.3 159.9 L255.3 161.4 L253.5 171.8 L228.5 164.4 Z"/><path class="slot" d="M226.5 171.8 L251.9 177.8 L248.3 187.7 L225.0 176.1 Z"/><path class="slot" d="M221.7 183.0 L245.7 193.4 L240.4 202.5 L219.4 187.0 Z"/><path class="slot" d="M215.1 193.2 L236.8 207.6 L230.0 215.7 L212.1 196.7 Z"/><path class="slot" d="M206.7 202.1 L225.7 220.0 L217.6 226.8 L203.2 205.1 Z"/><path class="slot" d="M197.0 209.4 L212.5 230.4 L203.4 235.7 L193.0 211.7 Z"/><path class="slot" d="M186.1 215.0 L197.7 238.3 L187.8 241.9 L181.8 216.5 Z"/><path class="slot" d="M174.4 218.5 L181.8 243.5 L171.4 245.3 L169.9 219.3 Z"/><path class="slot" d="M162.3 220.0 L165.3 245.9 L154.7 245.9 L157.7 220.0 Z"/><path class="slot" d="M150.1 219.3 L148.6 245.3 L138.2 243.5 L145.6 218.5 Z"/><path class="slot" d="M138.2 216.5 L132.2 241.9 L122.3 238.3 L133.9 215.0 Z"/><path class="slot" d="M127.0 211.7 L116.6 235.7 L107.5 230.4 L123.0 209.4 Z"/><path class="slot" d="M116.8 205.1 L102.4 226.8 L94.3 220.0 L113.3 202.1 Z"/><path class="slot" d="M107.9 196.7 L90.0 215.7 L83.2 207.6 L104.9 193.2 Z"/><path class="slot" d="M100.6 187.0 L79.6 202.5 L74.3 193.4 L98.3 183.0 Z"/><path class="slot" d="M95.0 176.1 L71.7 187.7 L68.1 177.8 L93.5 171.8 Z"/><path class="slot" d="M91.5 164.4 L66.5 171.8 L64.7 161.4 L90.7 159.9 Z"/><path class="slot" d="M90.0 152.3 L64.1 155.3 L64.1 144.7 L90.0 147.7 Z"/><path class="slot" d="M90.7 140.1 L64.7 138.6 L66.5 128.2 L91.5 135.6 Z"/><path class="slot" d="M93.5 128.2 L68.1 122.2 L71.7 112.3 L95.0 123.9 Z"/><path class="slot" d="M98.3 117.0 L74.3 106.6 L79.6 97.5 L100.6 113.0 Z"/><path class="slot" d="M104.9 106.8 L83.2 92.4 L90.0 84.3 L107.9 103.3 Z"/><path class="slot" d="M113.3 97.9 L94.3 80.0 L102.4 73.2 L116.8 94.9 Z"/><path class="slot" d="M123.0 90.6 L107.5 69.6 L116.6 64.3 L127.0 88.3 Z"/><path class="slot" d="M133.9 85.0 L122.3 61.7 L132.2 58.1 L138.2 83.5 Z"/><path class="slot" d="M145.6 81.5 L138.2 56.5 L148.6 54.7 L150.1 80.7 Z"/><path class="slot" d="M157.7 80.0 L154.7 54.1 L165.3 54.1 L162.3 80.0 Z"/><path class="slot" d="M169.9 80.7 L171.4 54.7 L181.8 56.5 L174.4 81.5 Z"/><path class="slot" d="M181.8 83.5 L187.8 58.1 L197.7 61.7 L186.1 85.0 Z"/><path class="slot" d="M193.0 88.3 L203.4 64.3 L212.5 69.6 L197.0 90.6 Z"/><path class="slot" d="M203.2 94.9 L217.6 73.2 L225.7 80.0 L206.7 97.9 Z"/><path class="slot" d="M212.1 103.3 L230.0 84.3 L236.8 92.4 L215.1 106.8 Z"/><path class="slot" d="M219.4 113.0 L240.4 97.5 L245.7 106.6 L221.7 117.0 Z"/><path class="slot" d="M225.0 123.9 L248.3 112.3 L251.9 122.2 L226.5 128.2 Z"/><path class="slot" d="M228.5 135.6 L253.5 128.2 L255.3 138.6 L229.3 140.1 Z"/><circle class="ln" cx="160" cy="150" r="62"/><rect class="magnet" x="199.0" y="166.4" width="18" height="7" transform="rotate(112.5 208.0 169.9)"/><rect class="magnet" x="170.9" y="194.5" width="18" height="7" transform="rotate(157.5 179.9 198.0)"/><rect class="magnet" x="131.1" y="194.5" width="18" height="7" transform="rotate(202.5 140.1 198.0)"/><rect class="magnet" x="103.0" y="166.4" width="18" height="7" transform="rotate(247.5 112.0 169.9)"/><rect class="magnet" x="103.0" y="126.6" width="18" height="7" transform="rotate(292.5 112.0 130.1)"/><rect class="magnet" x="131.1" y="98.5" width="18" height="7" transform="rotate(337.5 140.1 102.0)"/><rect class="magnet" x="170.9" y="98.5" width="18" height="7" transform="rotate(382.5 179.9 102.0)"/><rect class="magnet" x="199.0" y="126.6" width="18" height="7" transform="rotate(427.5 208.0 130.1)"/><circle class="ln" cx="160" cy="150" r="14"/><path class="ln-center" d="M15 150H305M160 5V295"/><path class="ln-red" d="M243 67 L300 32 H430"/><circle class="fill-red" cx="243" cy="67" r="2.4"/><text class="svg-t red" x="304" y="27">COOLANT JACKET</text><text class="svg-t red" x="304" y="44">22% → 4% LEAK FAILS</text><path class="ln-red" d="M230 202 L300 238 H430"/><circle class="fill-red" cx="230" cy="202" r="2.4"/><text class="svg-t red" x="304" y="233">LAMINATION STACK</text><text class="svg-t sm" x="304" y="250">SCRAP −15% (REPORTED)</text><path class="ln-thin" d="M200 120 L300 140 H430"/><circle class="fill-ink" cx="200" cy="120" r="2.4"/><text class="svg-t" x="304" y="135">ROTOR</text></svg><figcaption>Schematic: liquid-cooled traction motor, end view.</figcaption></figure>
+      </li>
+      <li class="job">
+        <div class="when">Apr 2019 – Jul 2019<span>Visakhapatnam, India</span></div>
+        <div>
+          <h3>BHEL <small>Project Engineer Intern</small></h3>
+          <p class="ctx">Production analysis and quality audits for welded assemblies.</p>
+          <ul class="pts">
+            <li>Analysed production data to find machine-downtime causes, recommending changes associated with a reported <b>5%</b> throughput improvement.</li>
+            <li>Documented non-conformances and supported root-cause investigations into welded-assembly failures.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Independent engineering projects</h2>
+      <p>Self-directed work since February 2026, built on original geometry after relocating to Hyderabad. Results are calculated, simulated or estimated, and labelled that way.</p>
+    </div>
+    <div class="sheets">
+
+      <article class="sheet">
+        <figure>
+          <svg viewBox="0 0 360 200" role="img" aria-labelledby="s1t">
+            <title id="s1t">Seven-part axial stack with a tolerance loop and the closing gap</title>
+            <path class="ln-center" d="M10 120h340"/>
+            <g class="ln">
+              <rect x="22" y="70" width="34" height="100"/><rect x="56" y="88" width="30" height="64"/><rect x="86" y="62" width="58" height="116"/>
+              <rect x="144" y="92" width="26" height="56"/><rect x="170" y="74" width="46" height="92"/><rect x="216" y="94" width="30" height="52"/>
+              <rect x="258" y="66" width="62" height="108"/>
+            </g>
+            <g class="svg-t sm"><text x="34" y="190">1</text><text x="66" y="190">2</text><text x="111" y="190">3</text><text x="152" y="190">4</text><text x="189" y="190">5</text><text x="226" y="190">6</text><text x="285" y="190">7</text></g>
+            <g class="ln-thin"><path d="M22 40v24M246 40v48M258 40v20"/><path d="M28 46h212"/><path d="M28 46l6-3v6zM240 46l-6-3v6z" class="fill-ink"/></g>
+            <text class="svg-t sm" x="40" y="38">CHAIN · WORST-CASE + 3σ RSS</text>
+            <path class="ln-red" d="M246 30h12"/>
+            <text class="svg-t red" x="232" y="22">0.38</text>
+            <text class="svg-t red" x="276" y="22">→ ≥ 0.15</text>
+          </svg>
+        </figure>
+        <div class="txt">
+          <div class="tblock"><span><b>SHEET</b> 1 / 4</span><span><b>TOOLS</b> Creo Parametric, Excel</span><span><b>STD</b> ASME Y14.5</span></div>
+          <h3>1D tolerance stack-up for a hydraulic-drivetrain interface</h3>
+          <ul class="pts">
+            <li>Found a calculated <b>0.38 mm</b> axial binding risk in a 7-part interface using a closed-loop worst-case and 3σ RSS stack-up.</li>
+            <li>Revised the datum reference frame and moved non-critical shoulders to statistical allocation, securing a calculated <b>0.15 mm</b> minimum clearance at 85 °C and relaxing those tolerances by <b>30%</b> (assuming Cpk ≥ 1.33) to cut projected machining cost.</li>
+          </ul>
+          <details class="case"><summary>Method, equations and assumptions</summary>
+            <div class="case-body">
+              <p class="eq">T<sub>wc</sub> = Σ |t<sub>i</sub>| &nbsp;&nbsp; T<sub>rss</sub> = √(Σ t<sub>i</sub><sup>2</sup>) &nbsp;&nbsp; C<sub>pk</sub> = min[(USL − μ)/3σ, (μ − LSL)/3σ]</p>
+              <dl>
+                <dt>LOOP</dt><dd>Closed 1D vector loop through 7 parts, with thermal growth at 85 °C.</dd>
+                <dt>DECISION</dt><dd>Worst-case kept where binding would be critical; RSS on non-critical shoulders.</dd>
+                <dt>ASSUMES</dt><dd>RSS treats dimensions as normal, centred and independent; ±3σ covers 99.73%. Cpk 1.33 is an assumed capability, not measured.</dd>
+                <dt>FILES</dt><dd>Creo assembly, part and drawing files; Excel worst-case and RSS workbook.</dd>
+              </dl>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="sheet">
+        <figure>
+          <svg viewBox="0 0 360 200" role="img" aria-labelledby="s2t">
+            <title id="s2t">Section through a moulded wall with a rib, draft angle and parting line</title>
+            <path class="ln-center" d="M10 40h340"/>
+            <text class="svg-t sm" x="250" y="32">PARTING LINE</text>
+            <path class="body-fill" d="M40 150 L320 150 L320 170 L40 170 Z M160 150 L166 60 L178 60 L184 150 Z"/>
+            <path class="ln" d="M40 150 H160 L166 60 H178 L184 150 H320 V170 H40 Z"/>
+            <g class="ln-thin"><path d="M330 150h14M330 170h14M338 150v20"/></g>
+            <text class="svg-t" x="300" y="192">2.5 WALL</text>
+            <g class="ln-thin"><path d="M166 54v-12M178 54v-12"/></g>
+            <text class="svg-t" x="186" y="52">0.6 t RIB</text>
+            <path class="ln-thin" d="M166 60 L160 60 M160 60 L158 150" stroke-dasharray="3 3"/>
+            <text class="svg-t" x="96" y="100">1.5–2.0°</text>
+            <text class="svg-t red" x="40" y="192">−3 UNDERCUTS → 2-PLATE</text>
+          </svg>
+        </figure>
+        <div class="txt">
+          <div class="tblock"><span><b>SHEET</b> 2 / 4</span><span><b>TOOLS</b> SolidWorks, SolidWorks Plastics</span><span><b>MATL</b> PA66-GF30</span></div>
+          <h3>Injection-moulded structural housing</h3>
+          <ul class="pts">
+            <li>Designed a glass-filled nylon housing for high-vibration service with a uniform <b>2.5 mm</b> wall, 1.5°–2.0° draft and a 0.6× rib-to-wall ratio.</li>
+            <li>Resolved 3 undercut and thin-wall flow restrictions with SolidWorks Plastics, turning a multi-slide tool into a straight-pull 2-plate mould for an estimated <b>~20%</b> saving in hard-tooling cost.</li>
+          </ul>
+          <details class="case"><summary>Method, rules and assumptions</summary>
+            <div class="case-body">
+              <p class="eq">t<sub>rib</sub> = 0.5–0.6 × t<sub>wall</sub> &nbsp;&nbsp; draft + ≈1° per 0.025 mm texture &nbsp;&nbsp; PA66-GF30 shrink ≈ 0.3–0.7%</p>
+              <dl>
+                <dt>WALL</dt><dd>Uniform 2.5 mm nominal to avoid sinks and differential cooling.</dd>
+                <dt>TOOLING</dt><dd>Internal features reworked so no side-actions are needed: a straight-pull 2-plate mould.</dd>
+                <dt>ESTIMATE</dt><dd>The ~20% tooling saving is a calculation, not a supplier quote. Shrinkage depends on grade and fibre orientation.</dd>
+                <dt>FILES</dt><dd>SolidWorks part and SolidWorks Plastics study.</dd>
+              </dl>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="sheet">
+        <figure>
+          <svg viewBox="0 0 360 200" role="img" aria-labelledby="s3t">
+            <title id="s3t">Bracket before and after topology optimisation</title>
+            <path class="body-fill" d="M20 30 H50 V60 L150 150 H166 V176 H20 Z"/>
+            <path class="ln" d="M20 30 H50 V60 L150 150 H166 V176 H20 Z"/>
+            <text class="svg-t sm" x="20" y="194">BASELINE</text>
+            <path class="body-fill" d="M196 30 H226 V60 L326 150 H342 V176 H196 Z"/>
+            <path class="ln" d="M196 30 H226 V60 L326 150 H342 V176 H196 Z"/>
+            <path class="ln" d="M210 84 L210 160 Q210 164 214 164 L268 164 Q274 164 270 160 L216 80 Q210 76 210 84 Z"/>
+            <path class="ln" d="M282 140 L282 160 Q282 164 286 164 L310 164 Q315 164 311 160 L288 137 Q282 134 282 140 Z"/>
+            <text class="svg-t sm" x="196" y="194">OPTIMISED, R6 FILLETS</text>
+            <text class="svg-t red" x="236" y="40">−29% MASS</text>
+            <text class="svg-t red" x="236" y="56">f₁ 142 Hz</text>
+          </svg>
+        </figure>
+        <div class="txt">
+          <div class="tblock"><span><b>SHEET</b> 3 / 4</span><span><b>TOOLS</b> ANSYS Mechanical, Fusion 360</span><span><b>MATL</b> Structural steel</span></div>
+          <h3>Topology optimisation and parametric rebuild of a heavy-equipment bracket</h3>
+          <ul class="pts">
+            <li>Cut bracket mass by <b>29%</b> (1.45 kg per unit) with stress-constrained topology optimisation, holding a <b>2.15</b> factor of safety (162 MPa peak) under simulated 3-axis hydraulic shock loads.</li>
+            <li>Rebuilt the optimised mesh as manufacturable parametric B-Rep CAD with R6 mm fillets, raising the simulated first natural frequency by <b>16%</b> to 142 Hz.</li>
+          </ul>
+          <details class="case"><summary>Method, equations and assumptions</summary>
+            <div class="case-body">
+              <p class="eq">min<sub>ρ</sub> C = F<sup>T</sup>u &nbsp; s.t. &nbsp; V(ρ) ≤ V<sub>target</sub>, Ku = F &nbsp;&nbsp; σ<sub>vM</sub> ≤ σ<sub>y</sub> / FoS</p>
+              <dl>
+                <dt>LOADS</dt><dd>Peak 3-axis hydraulic shock loads; stress-constrained optimisation.</dd>
+                <dt>REBUILD</dt><dd>Organic facet mesh rebuilt as parametric B-Rep with R6 mm fillets for 3-axis machining.</dd>
+                <dt>CHECKS</dt><dd>Factor of safety 2.15 at 162 MPa peak; modal check puts the first mode at 142 Hz. All simulated.</dd>
+                <dt>FILES</dt><dd>ANSYS Mechanical project archive; Fusion 360 and STEP models. Original geometry only.</dd>
+              </dl>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="sheet">
+        <figure>
+          <svg viewBox="0 0 360 210" role="img" aria-labelledby="s4t s4d">
+            <title id="s4t">Simulated against reference Chapman-Jouguet values</title>
+            <desc id="s4d">Paired bars drawn to scale. CJ velocity: 1912 metres per second simulated against 1968 reference. CJ pressure: 1.51 megapascals simulated against 1.58 reference.</desc>
+            <!-- scale: velocity 0..2000 m/s over 0..220 px; pressure 0..1.6 MPa over 0..220 px -->
+            <g class="svg-t sm"><text x="10" y="30">CJ VELOCITY, m/s</text><text x="10" y="120">CJ PRESSURE, MPa</text></g>
+            <rect x="110" y="40" width="210.3" height="14" style="fill: var(--redline)"/>
+            <rect x="110" y="60" width="216.5" height="14" style="fill: var(--grid-strong)"/>
+            <text class="svg-t sm" x="10" y="52">Simulated</text><text class="svg-t sm" x="10" y="72">Reference</text>
+            <text class="svg-t" x="114" y="94">1912 vs 1968 · 2.85%</text>
+            <rect x="110" y="130" width="207.6" height="14" style="fill: var(--redline)"/>
+            <rect x="110" y="150" width="217.3" height="14" style="fill: var(--grid-strong)"/>
+            <text class="svg-t sm" x="10" y="142">Simulated</text><text class="svg-t sm" x="10" y="162">Reference</text>
+            <text class="svg-t" x="114" y="184">1.51 vs 1.58 · 4.43%</text>
+            <path class="ln-thin" d="M110 36v132"/>
+            <text class="svg-t sm" x="104" y="204">0</text>
+            <text class="svg-t sm" x="306" y="30">2000</text><text class="svg-t sm" x="314" y="120">1.6</text>
+          </svg>
+        </figure>
+        <div class="txt">
+          <div class="tblock"><span><b>SHEET</b> 4 / 4</span><span><b>TOOLS</b> OpenFOAM</span><span><b>CASE</b> H₂–air, 1 atm, 298 K</span></div>
+          <h3>Reacting-flow CFD validation: hydrogen-air detonation</h3>
+          <ul class="pts">
+            <li>Validated a transient OpenFOAM reacting-flow model (1D/2D shock tube, 9-species Ó Conaire mechanism, 0.1 mm resolution) against NASA CEA and Caltech Chapman-Jouguet data.</li>
+            <li>Matched CJ detonation velocity within <b>2.85%</b> and CJ pressure within <b>4.43%</b>.</li>
+          </ul>
+          <details class="case"><summary>Set-up and validation basis</summary>
+            <div class="case-body">
+              <dl>
+                <dt>DOMAIN</dt><dd>1D/2D planar shock tube, 1.5 m × 0.03 m.</dd>
+                <dt>MESH</dt><dd>0.1 mm cells across the induction zone, about 15–20 per half-reaction length; Courant number ≤ 0.2.</dd>
+                <dt>CHEMISTRY</dt><dd>Stoichiometric H₂–air at 1 atm and 298 K; Ó Conaire 9-species, 19-reaction mechanism; stiff ODE integration.</dd>
+                <dt>REFERENCE</dt><dd>NASA CEA Chapman-Jouguet values and the Caltech detonation database.</dd>
+                <dt>LIMIT</dt><dd>CJ pressure is the weakest match (4.43%), so it sets the "within 4.5%" bound.</dd>
+              </dl>
+            </div>
+          </details>
+          <p class="note">Next step, proposed as research: extending the validated model to a 3D annular rotating detonation engine combustor.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Research and academic projects</h2>
+      <p>MSc and BTech work in vehicle dynamics, structures, aerodynamics and machine design. Simulated results are marked.</p>
+    </div>
+    <article class="rs-feature">
+      <figure class="fig"><svg viewBox="0 0 320 260" role="img" aria-labelledby="iquartercarmodelw"><title id="iquartercarmodelw">Quarter-car model with active suspension</title><desc>Sprung mass and unsprung mass linked by spring, damper and an active force actuator, over a tyre spring. Simulated stability gain of 15 percent.</desc><rect class="mass" x="60" y="30" width="200" height="44"/><text class="svg-t" x="134" y="57">mₛ</text><rect class="mass" x="100" y="150" width="120" height="36"/><text class="svg-t" x="148" y="173">mᵤ</text><path class="ln" d="M100.0 74.0 L100.0 79.4 L110.0 84.9 L90.0 95.7 L110.0 106.6 L90.0 117.4 L110.0 128.3 L90.0 139.1 L100.0 144.6 L100.0 150.0"/><text class="svg-t sm" x="66" y="116">kₛ</text><path class="ln" d="M160 74 V100 M150 100 H170 M146 96 V124 H174 V96 M160 112 V150"/><text class="svg-t sm" x="178" y="116">cₛ</text><rect class="active" x="204" y="92" width="30" height="40"/><path class="ln" d="M219 74 V92 M219 132 V150"/><text class="svg-t red" x="240" y="116">Fₐ ACTIVE</text><path class="ln" d="M160.0 186.0 L160.0 191.4 L168.0 196.8 L152.0 207.6 L168.0 218.4 L152.0 229.2 L160.0 234.6 L160.0 240.0"/><text class="svg-t sm" x="176" y="218">kₜ</text><path class="ground" d="M70 240 H250"/><path class="hatchline" d="M80 240 l-8 10 M110 240 l-8 10 M140 240 l-8 10 M170 240 l-8 10 M200 240 l-8 10 M230 240 l-8 10"/><text class="svg-t red" x="40" y="20">STABILITY +15% (SIMULATED)</text></svg><figcaption>Quarter-car model with an active actuator.</figcaption></figure>
+      <div style="display:grid;gap:var(--s-3)">
+        <p class="meta">MSc DISSERTATION · UNIVERSITY OF LEEDS · 2022 – 2023</p>
+        <h3>Enhancing EV performance through suspension system optimisation</h3>
+        <p class="hl">+15% vehicle stability (simulated)</p>
+        <ul class="pts">
+          <li>Optimised suspension geometry and active-suspension control parameters iteratively on an EV platform.</li>
+          <li>Built multi-body dynamics models in MATLAB, Simulink and Simscape, and designed the suspension components in CAD.</li>
+          <li>Quantified handling with constant-radius cornering, stability-index analysis and static and dynamic load cases.</li>
+          <li>Checked component strength with ANSYS FEA, and applied DFMEA and DFA during virtual prototyping.</li>
+        </ul>
+        <ul class="tags"><li>MATLAB</li><li>Simulink</li><li>Simscape</li><li>ANSYS</li><li>Multi-body dynamics</li></ul>
+      </div>
+    </article>
+    <div class="rs-grid">
+      <article class="rs-card">
+        <figure class="fig"><svg viewBox="0 0 480 285" role="img" aria-labelledby="iladderframechass"><title id="iladderframechass">Ladder-frame chassis, top view, with frontal impact load</title><desc>Two side rails and five cross members, 3000 by 2000 millimetres, with frontal impact arrows at 40 and 70 kilometres per hour.</desc><rect class="body-fill" x="40" y="40" width="300" height="200"/><path class="ln" d="M40 70 H340 M40 210 H340"/><path class="ln" d="M50 70 V210"/><path class="ln" d="M120 70 V210"/><path class="ln" d="M190 70 V210"/><path class="ln" d="M260 70 V210"/><path class="ln" d="M330 70 V210"/><rect class="ln-thin" x="40" y="40" width="300" height="200" stroke-dasharray="4 3"/><path class="ln-thin" d="M40 262 V250 M340 262 V250 M44 256 H336"/><path class="fill-ink" d="M40 256 l8 -3 v6z M340 256 l-8 -3 v6z"/><text class="svg-t" x="172" y="274">3000</text><path class="ln-thin" d="M362 40 H350 M362 240 H350 M356 44 V236"/><path class="fill-ink" d="M356 40 l-3 8 h6z M356 240 l-3 -8 h6z"/><text class="svg-t" x="366" y="232">2000</text><path class="ln-red" d="M412 100 H348"/><path class="ln-red" d="M412 140 H348"/><path class="ln-red" d="M412 180 H348"/><path class="fill-red" d="M344 100 l10 -4 v8z M344 140 l10 -4 v8z M344 180 l10 -4 v8z"/><text class="svg-t red" x="380" y="80">40 / 70 km/h</text><text class="svg-t sm" x="380" y="94">FRONTAL IMPACT</text></svg></figure>
+        <p class="meta">MSc GROUP PROJECT · LEEDS</p>
+        <h3>Autonomous transportation pod</h3>
+        <p class="hl">Frontal impact simulated at 40 and 70 km/h</p>
+        <ul class="pts">
+          <li>Designed the 3000 × 2000 mm ladder-frame chassis for a 10-occupant (1000 kg) pod, ran the crash simulations in ANSYS Explicit Dynamics, and integrated chassis, powertrain, battery, steering and sensors.</li>
+          <li>Contributed to the Bosch eAxle and 39.4 kWh LiFePO4 pack selection, a steer-by-wire concept and the materials decision matrix.</li>
+        </ul>
+      </article>
+      <article class="rs-card">
+        <figure class="fig"><svg viewBox="0 0 480 205" role="img" aria-labelledby="isideprofileofare"><title id="isideprofileofare">Side profile of a 2022-regulation F1 concept with rake angle</title><desc>Simplified F1 car silhouette with streamlines and a rake line marked 1.8 degrees, exaggerated. Simulated downforce up 12 percent and drag down 6 percent.</desc><path class="ground" d="M10 172 H470"/><path class="body-fill" d="M40 150 L60 128 L120 126 L180 112 L230 92 L262 88 L300 104 L340 112 L420 118 L440 104 L452 104 L452 150 Z"/><path class="ln" d="M40 150 L60 128 L120 126 L180 112 L230 92 L262 88 L300 104 L340 112 L420 118 L440 104 L452 104 L452 150 Z"/><path class="ln" d="M30 152 H120 M30 144 H60"/><path class="ln" d="M440 88 H470 M440 96 H468"/><path class="ln" d="M236 92 Q248 70 266 76"/><circle class="ln" cx="110" cy="148" r="24" style="fill: var(--panel)"/><circle class="ln-thin" cx="110" cy="148" r="11"/><circle class="ln" cx="390" cy="148" r="24" style="fill: var(--panel)"/><circle class="ln-thin" cx="390" cy="148" r="11"/><path class="stream" d="M10 70 C120 66 220 60 300 72 S440 70 470 60 M10 46 C140 44 260 40 360 50 S450 46 470 40 M10 100 C80 100 150 98 190 96"/><path class="ln-red" d="M60 176 L452 162"/><path class="ln-thin" d="M60 176 H200" stroke-dasharray="3 3"/><text class="svg-t red" x="208" y="196">RAKE 1.8° (DRAWN EXAGGERATED)</text><text class="svg-t red" x="150" y="24">+12% DOWNFORCE, −6% DRAG (SIM.)</text></svg></figure>
+        <p class="meta">BTech PROJECT · VIT</p>
+        <h3>F1 aerodynamics comparative analysis</h3>
+        <p class="hl">+12% downforce, −6% drag (simulated)</p>
+        <ul class="pts">
+          <li>Modelled a 2022-regulation concept in CATIA and SolidWorks and compared it with 2021-generation cars in turbulent air.</li>
+          <li>Ran CFD in ANSYS Fluent and OpenFOAM, then proposed a 1.8° rake angle, revised wing angles of attack and reworked sidepods, diffuser and endplates.</li>
+        </ul>
+      </article>
+      <article class="rs-card">
+        <figure class="fig"><svg viewBox="0 0 370 240" role="img" aria-labelledby="imeshingspurgearp"><title id="imeshingspurgearp">Meshing spur gear pair</title><desc>Two meshing spur gears on their pitch circles, with notes on contact and root bending stress checks.</desc><path class="gear" d="M171.7 120.0 L171.6 122.2 L179.9 124.2 L186.3 126.5 L185.8 130.9 L178.9 131.4 L170.4 131.3 L168.6 137.7 L168.6 137.7 L167.8 139.7 L174.8 144.4 L180.1 148.8 L178.1 152.7 L171.4 150.9 L163.5 147.8 L159.6 153.2 L159.6 153.2 L158.2 154.8 L163.2 161.7 L166.6 167.6 L163.4 170.6 L157.8 166.6 L151.4 161.0 L145.8 164.7 L145.8 164.7 L143.9 165.8 L146.3 173.9 L147.5 180.7 L143.5 182.4 L139.5 176.7 L135.5 169.3 L129.0 170.9 L129.0 170.9 L126.8 171.2 L126.3 179.7 L125.1 186.5 L120.7 186.7 L119.0 180.0 L117.7 171.6 L111.0 170.9 L111.0 170.9 L108.9 170.5 L105.5 178.2 L102.1 184.2 L97.9 182.9 L98.5 176.0 L100.1 167.7 L94.2 164.7 L94.2 164.7 L92.3 163.6 L86.4 169.7 L81.2 174.2 L77.7 171.5 L80.6 165.3 L85.0 158.0 L80.4 153.2 L80.4 153.2 L79.1 151.5 L71.5 155.3 L65.0 157.7 L62.6 153.9 L67.5 149.1 L74.1 143.8 L71.4 137.7 L71.4 137.7 L70.8 135.6 L62.3 136.5 L55.4 136.6 L54.5 132.3 L60.7 129.4 L68.8 126.7 L68.3 120.0 L68.3 120.0 L68.4 117.8 L60.1 115.8 L53.7 113.5 L54.2 109.1 L61.1 108.6 L69.6 108.7 L71.4 102.3 L71.4 102.3 L72.2 100.3 L65.2 95.6 L59.9 91.2 L61.9 87.3 L68.6 89.1 L76.5 92.2 L80.4 86.8 L80.4 86.8 L81.8 85.2 L76.8 78.3 L73.4 72.4 L76.6 69.4 L82.2 73.4 L88.6 79.0 L94.2 75.3 L94.2 75.3 L96.1 74.2 L93.7 66.1 L92.5 59.3 L96.5 57.6 L100.5 63.3 L104.5 70.7 L111.0 69.1 L111.0 69.1 L113.2 68.8 L113.7 60.3 L114.9 53.5 L119.3 53.3 L121.0 60.0 L122.3 68.4 L129.0 69.1 L129.0 69.1 L131.1 69.5 L134.5 61.8 L137.9 55.8 L142.1 57.1 L141.5 64.0 L139.9 72.3 L145.8 75.3 L145.8 75.3 L147.7 76.4 L153.6 70.3 L158.8 65.8 L162.3 68.5 L159.4 74.7 L155.0 82.0 L159.6 86.8 L159.6 86.8 L160.9 88.5 L168.5 84.7 L175.0 82.3 L177.4 86.1 L172.5 90.9 L165.9 96.2 L168.6 102.3 L168.6 102.3 L169.2 104.4 L177.7 103.5 L184.6 103.4 L185.5 107.7 L179.3 110.6 L171.2 113.3 L171.7 120.0 Z"/><path class="gear" d="M189.4 111.8 L190.0 109.9 L182.7 105.7 L177.2 101.5 L179.2 97.3 L185.9 99.1 L193.7 102.3 L197.6 97.6 L197.6 97.6 L199.1 96.2 L194.8 88.9 L192.2 82.5 L196.0 80.0 L200.9 84.8 L206.1 91.6 L211.8 89.4 L211.8 89.4 L213.7 89.0 L213.7 80.5 L214.6 73.6 L219.3 73.3 L221.0 80.0 L222.2 88.4 L228.2 89.4 L228.2 89.4 L230.1 90.0 L234.3 82.7 L238.5 77.2 L242.7 79.2 L240.9 85.9 L237.7 93.7 L242.4 97.6 L242.4 97.6 L243.8 99.1 L251.1 94.8 L257.5 92.2 L260.0 96.0 L255.2 100.9 L248.4 106.1 L250.6 111.8 L250.6 111.8 L251.0 113.7 L259.5 113.7 L266.4 114.6 L266.7 119.3 L260.0 121.0 L251.6 122.2 L250.6 128.2 L250.6 128.2 L250.0 130.1 L257.3 134.3 L262.8 138.5 L260.8 142.7 L254.1 140.9 L246.3 137.7 L242.4 142.4 L242.4 142.4 L240.9 143.8 L245.2 151.1 L247.8 157.5 L244.0 160.0 L239.1 155.2 L233.9 148.4 L228.2 150.6 L228.2 150.6 L226.3 151.0 L226.3 159.5 L225.4 166.4 L220.7 166.7 L219.0 160.0 L217.8 151.6 L211.8 150.6 L211.8 150.6 L209.9 150.0 L205.7 157.3 L201.5 162.8 L197.3 160.8 L199.1 154.1 L202.3 146.3 L197.6 142.4 L197.6 142.4 L196.2 140.9 L188.9 145.2 L182.5 147.8 L180.0 144.0 L184.8 139.1 L191.6 133.9 L189.4 128.2 L189.4 128.2 L189.0 126.3 L180.5 126.3 L173.6 125.4 L173.3 120.7 L180.0 119.0 L188.4 117.8 L189.4 111.8 Z"/><circle class="ln-center" cx="120" cy="120" r="60"/><circle class="ln" cx="120" cy="120" r="10" style="fill: var(--panel)"/><circle class="ln-center" cx="220" cy="120" r="40"/><circle class="ln" cx="220" cy="120" r="8" style="fill: var(--panel)"/><path class="ln-center" d="M40 120 H290"/><path class="ln-thin" d="M178 116 L250 40 H330"/><circle class="fill-ink" cx="178" cy="116" r="2.4"/><text class="svg-t" x="254" y="35">CONTACT STRESS</text><path class="ln-thin" d="M150 180 L250 214 H330"/><circle class="fill-ink" cx="150" cy="180" r="2.4"/><text class="svg-t" x="254" y="209">ROOT BENDING</text></svg></figure>
+        <p class="meta">MSc COURSEWORK · LEEDS · MAR 2023</p>
+        <h3>Spur-gear pair design for an EV</h3>
+        <ul class="pts">
+          <li>Defined gear geometry, ratio and dimensional tolerances for an EV transmission.</li>
+          <li>Checked tooth root bending and contact stresses under simulated operating loads with ANSYS Mechanical FEA.</li>
+        </ul>
+      </article>
+      <article class="rs-card">
+        <figure class="fig"><svg viewBox="0 0 490 115" role="img" aria-labelledby="isevenstagewastep"><title id="isevenstagewastep">Seven-stage waste-plastic to filament process</title><rect class="ln" x="10" y="40" width="56" height="40" style="fill: var(--panel)"/><text class="svg-t sm" x="38.0" y="64" text-anchor="middle">CRUSH</text><text class="svg-t" x="38.0" y="30" text-anchor="middle">1</text><path class="ln-thin" d="M67 60 H76"/><path class="fill-ink" d="M78 60 l-5 -3 v6z"/><rect class="ln" x="78" y="40" width="56" height="40" style="fill: var(--panel)"/><text class="svg-t sm" x="106.0" y="64" text-anchor="middle">SHRED</text><text class="svg-t" x="106.0" y="30" text-anchor="middle">2</text><path class="ln-thin" d="M135 60 H144"/><path class="fill-ink" d="M146 60 l-5 -3 v6z"/><rect class="ln" x="146" y="40" width="56" height="40" style="fill: var(--panel)"/><text class="svg-t sm" x="174.0" y="64" text-anchor="middle">MELT</text><text class="svg-t" x="174.0" y="30" text-anchor="middle">3</text><path class="ln-thin" d="M203 60 H212"/><path class="fill-ink" d="M214 60 l-5 -3 v6z"/><rect class="ln" x="214" y="40" width="56" height="40" style="fill: var(--panel)"/><text class="svg-t sm" x="242.0" y="64" text-anchor="middle">PUMP</text><text class="svg-t" x="242.0" y="30" text-anchor="middle">4</text><path class="ln-thin" d="M271 60 H280"/><path class="fill-ink" d="M282 60 l-5 -3 v6z"/><rect class="ln" x="282" y="40" width="56" height="40" style="fill: var(--panel)"/><text class="svg-t sm" x="310.0" y="64" text-anchor="middle">COOL</text><text class="svg-t" x="310.0" y="30" text-anchor="middle">5</text><path class="ln-thin" d="M339 60 H348"/><path class="fill-ink" d="M350 60 l-5 -3 v6z"/><rect class="ln" x="350" y="40" width="56" height="40" style="fill: var(--panel)"/><text class="svg-t sm" x="378.0" y="64" text-anchor="middle">EXTRUDE</text><text class="svg-t" x="378.0" y="30" text-anchor="middle">6</text><path class="ln-thin" d="M407 60 H416"/><path class="fill-ink" d="M418 60 l-5 -3 v6z"/><rect class="ln" x="418" y="40" width="56" height="40" style="fill: var(--panel)"/><text class="svg-t sm" x="446.0" y="64" text-anchor="middle">FINISH</text><text class="svg-t" x="446.0" y="30" text-anchor="middle">7</text><text class="svg-t sm" x="10" y="104">PP · PS · PET · HDPE  →  3D-PRINTER FILAMENT · 10 HP, 1:30, 150 kg BATCH</text></svg></figure>
+        <p class="meta">BTech PROJECT · VIT</p>
+        <h3>Waste plastic to 3D-printer filament machine</h3>
+        <ul class="pts">
+          <li>Designed an integrated seven-stage machine in SolidWorks (hopper, reducer, extruder) for PP, PS, PET and HDPE.</li>
+          <li>Sized a 10 HP induction motor with a 1:30 reducer for a 150 kg batch, and built the cost, revenue and SWOT case.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="rs-also">
+      <div><h3>Regenerative braking concept</h3><p>BTech, VIT. A 450 W DC motor-generator recovers kinetic energy under braking, with a 200 mm drum, lining and linkage.</p></div>
+      <div><h3>Vehicle testing centre business plan</h3><p>BTech, VIT. Government-regulated inspection centres: INR 730 lakh per 4-lane centre, INR 4.03 crore annual revenue and a 1.8-year break-even, all projected.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="teams">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Student engineering teams</h2>
+      <p>Two VIT Vellore teams with overlapping membership: an IC-engine prototype and a solar electric car. Schematics, not the actual vehicles.</p>
+    </div>
+    <div class="teams">
+      <article class="team">
+        <figure class="fig"><svg viewBox="0 0 400 165" role="img" aria-labelledby="ishellecomarathon"><title id="ishellecomarathon">Shell Eco-marathon IC-engine prototype, side view</title><desc>Low teardrop prototype body with engine-mount brackets marked: simulated 24 percent mass saving.</desc><path class="ground" d="M10 150 H390"/><path class="body-fill" d="M30 128 C40 80 120 58 210 58 C300 58 360 92 372 128 Z"/><path class="ln" d="M30 128 C40 80 120 58 210 58 C300 58 360 92 372 128 Z"/><path class="ln" d="M150 70 C170 50 220 48 244 64"/><circle class="ln" cx="90" cy="134" r="16" style="fill: var(--panel)"/><circle class="ln" cx="320" cy="134" r="16" style="fill: var(--panel)"/><rect class="active" x="262" y="96" width="44" height="22"/><path class="ln-red" d="M284 108 L250 30 H80"/><circle class="fill-red" cx="284" cy="108" r="2.4"/><text class="svg-t red" x="80" y="25">BRACKETS −24% (SIM.)</text></svg></figure>
+        <p class="tmeta">AUG 2020 – MAY 2021 · SHELL ECO-MARATHON, IC ENGINE PROTOTYPE</p>
+        <h3>Team Eco Titans · Mechanical Design Engineer</h3>
+        <ul class="pts">
+          <li>Designed lightweight powertrain-mounting brackets in Fusion 360 and ANSYS for a simulated <b>24%</b> mass reduction at a minimum 2.0 factor of safety.</li>
+          <li>Contributed to packaging, structural validation and compliance documents for the 2021 Virtual Technical Inspection; first-pass approval reported for chassis, steering and powertrain mounting.</li>
+        </ul>
+      </article>
+      <article class="team">
+        <figure class="fig"><svg viewBox="0 0 400 165" role="img" aria-labelledby="isolarelectricveh"><title id="isolarelectricveh">Solar electric vehicle with low-drag bodywork, side view</title><desc>Solar EV with panel cells on the upper body and streamlines. Drag reduced 15 percent, reported.</desc><path class="ground" d="M10 150 H390"/><path class="body-fill" d="M24 128 C30 96 90 84 200 84 C310 84 370 96 376 128 Z"/><path class="ln" d="M24 128 C30 96 90 84 200 84 C310 84 370 96 376 128 Z"/><path class="cell" d="M70 92 h28 v8 h-28 z"/><path class="cell" d="M102 92 h28 v8 h-28 z"/><path class="cell" d="M134 92 h28 v8 h-28 z"/><path class="cell" d="M166 92 h28 v8 h-28 z"/><path class="cell" d="M198 92 h28 v8 h-28 z"/><path class="cell" d="M230 92 h28 v8 h-28 z"/><path class="cell" d="M262 92 h28 v8 h-28 z"/><path class="cell" d="M294 92 h28 v8 h-28 z"/><path class="ln" d="M178 84 C186 64 220 62 230 84"/><circle class="ln" cx="80" cy="134" r="16" style="fill: var(--panel)"/><circle class="ln" cx="320" cy="134" r="16" style="fill: var(--panel)"/><path class="stream" d="M10 70 C120 62 280 62 390 70 M10 54 C140 46 260 46 390 54"/><text class="svg-t red" x="190" y="30">DRAG −15% (REPORTED)</text></svg></figure>
+        <p class="tmeta">OCT 2019 – FEB 2022 · SHELL ECO-MARATHON, URBANCONCEPT</p>
+        <h3>Team Celerity Solar EV · Design Engineer</h3>
+        <ul class="pts">
+          <li>Led the aerodynamic bodywork design for a reported <b>15%</b> drag reduction, and optimised the chassis for a reported 10.5–12% weight saving.</li>
+          <li>Managed the BOM and led testing and data analysis, contributing to <b>4th</b> in the Indian region and a top-50 overall placing (2020–21 virtual season).</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Skills, as a bill of materials</h2>
+      <p>Every item below is used in the work on this page.</p>
+    </div>
+    <div class="bom-wrap" tabindex="0" aria-label="Skills table, scrolls sideways on small screens">
+      <table class="bom">
+        <thead><tr><th>ITEM</th><th>CATEGORY</th><th>SPECIFICATION</th><th>WHERE USED</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>CAD</td><td>Siemens NX, SolidWorks, CATIA V5, Creo Parametric, Fusion 360</td><td><a href="#experience">JCB, Pitti</a>, <a href="#projects">projects</a></td></tr>
+          <tr><td>02</td><td>CAE and CFD</td><td>ANSYS Mechanical (structural, thermal, modal, non-linear, topology), Explicit Dynamics, Fluent, OpenFOAM</td><td><a href="#experience">Caterpillar, Pitti, JCB</a>, <a href="#projects">projects</a></td></tr>
+          <tr><td>03</td><td>GD&amp;T</td><td>ASME Y14.5, BS 8888, worst-case and RSS tolerance stack-up</td><td>JCB, Caterpillar, Pitti</td></tr>
+          <tr><td>04</td><td>Quality and DFM</td><td>DFMEA, PFMEA, DFM and DFA, injection-moulding DFM, root-cause analysis, SPC</td><td>All roles</td></tr>
+          <tr><td>05</td><td>Integration</td><td>Digital Mock-Up, packaging studies, interface control, engineering change orders</td><td>JCB, Caterpillar</td></tr>
+          <tr><td>06</td><td>Data and PLM</td><td>MATLAB, Simulink, Simscape, Python (NumPy), PTC Windchill</td><td>Caterpillar, MSc</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="trio">
+      <div>
+        <h3>EDUCATION</h3>
+        <ul class="plain">
+          <li><b>MSc Automotive Engineering</b><span>University of Leeds, UK</span><span class="meta mono">2022 – 2023 · 2:1, 63%</span></li>
+          <li><b>BTech Mechanical Engineering</b><span>VIT Vellore, India</span><span class="meta mono">2018 – 2022 · First Class, CGPA 7.93</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>CERTIFICATIONS</h3>
+        <ul class="plain">
+          <li><b>Electric Vehicles and Renewable Energy</b><span class="meta mono">NPTEL, IIT Madras · Gold</span></li>
+          <li><b>Battery Pack Design for EVs</b><span class="meta mono">Udemy</span></li>
+          <li><b>Two-Wheeler Design and Manufacturing</b><span class="meta mono">TVS Limited</span></li>
+          <li><b>Product Lifecycle Management</b><span class="meta mono">Great Learning</span></li>
+          <li><b>CAD/CAM</b><span class="meta mono">VIT</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>LANGUAGES</h3>
+        <ul class="plain">
+          <li><b>English</b><span class="meta mono">C1–C2 · IELTS Academic 2022</span></li>
+          <li><b>Telugu</b><span class="meta mono">Native</span></li>
+          <li><b>Hindi</b><span class="meta mono">C1</span></li>
+          <li><b>German</b><span class="meta mono">A1</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div>
+      <h2>Looking for a product or mechanical design engineer?</h2>
+      <p style="margin-top:var(--s-3);max-width:36rem">I'm available now, based in Hyderabad and open to relocating within India or abroad. Email is the quickest way to reach me.</p>
+      <div class="email">
+        <code id="addr">prathipati.nischal@proton.me</code>
+        <button class="btn" id="copy" type="button">Copy email</button>
+      </div>
+      <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="actions" style="justify-content:flex-start">
+      <a class="btn primary" href="https://www.linkedin.com/in/nischalprathipati" target="_blank" rel="noopener">Message on LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="titleblock" aria-label="Title block">
+      <div>TITLE<b>Portfolio: Nischal Prathipati</b></div>
+      <div>DRAWN<b>N. Prathipati</b></div>
+      <div>REV<b>A</b></div>
+      <div>DATE<b>2026-10</b></div>
+      <div>DOC NO.<b>NP-PORT-001</b></div>
+      <div>SCALE<b>NTS</b></div>
+      <div>UNITS<b>mm</b></div>
+      <div>SHEET<b>1 of 1</b></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var addr = document.getElementById('addr');
+  var status = document.getElementById('copy-status');
+  function selectAddr() {
+    var r = document.createRange(); r.selectNodeContents(addr);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  btn.addEventListener('click', function () {
+    var text = addr.textContent.trim();
+    var done = function () { status.textContent = 'Copied to clipboard'; };
+    var fallback = function () { selectAddr(); status.textContent = 'Selected. Press Ctrl+C or Cmd+C to copy.'; };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+  });
+})();
+
+(function () {
+  var root = document.documentElement, btn = document.getElementById('theme');
+  var modes = ['auto', 'light', 'dark'], mode = 'auto';
+  try { mode = localStorage.getItem('np-theme') || 'auto'; } catch (e) {}
+  function apply(m) {
+    mode = m;
+    if (m === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', m);
+    btn.textContent = 'Theme: ' + m;
+    btn.setAttribute('aria-label', 'Colour theme: ' + (m === 'auto' ? 'automatic' : m) + '. Click to change.');
+    try { localStorage.setItem('np-theme', m); } catch (e) {}
+  }
+  if (mode !== 'auto') apply(mode);
+  btn.addEventListener('click', function () { apply(modes[(modes.indexOf(mode) + 1) % modes.length]); });
+})();
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  var links = {};
+  document.querySelectorAll('.nav li a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var id = e.target.id === 'route' ? 'results' : (e.target.id === 'teams' ? 'research' : (e.target.id === 'education' ? 'skills' : e.target.id));
+      Object.keys(links).forEach(function (k) { links[k].removeAttribute('aria-current'); });
+      if (links[id]) links[id].setAttribute('aria-current', 'true');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('main section[id]').forEach(function (sec) { io.observe(sec); });
+})();
+</script>
+
+</body>
+</html>
