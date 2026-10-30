@@ -153,14 +153,14 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "student-teams",
-    title: "Two Shell Eco-marathon student teams",
+    title: "Shell Eco-marathon student team: Team Eco Titans",
     scope: "Academic",
-    org: "VIT student teams",
+    org: "Team Eco Titans, VIT",
     period: "Oct 2019 – Feb 2022",
     summary:
-      "Low-drag solar-car bodywork with a reported 15% drag reduction, and lightweight Prototype-vehicle brackets with a simulated 24% mass saving.",
+      "Low-drag bodywork with a reported 15% drag reduction, a chassis with a reported 10.5–12% weight saving, and powertrain brackets with a simulated 24% mass saving.",
     evidence: ["work", "sim"],
-    cover: "SOLARCAR",
+    cover: "ECOCAR",
     tools: ["CATIA", "SolidWorks", "Fusion 360", "ANSYS", "MATLAB"],
     claims: "CEL-01 to CEL-07, ECO-01, ECO-02",
   },

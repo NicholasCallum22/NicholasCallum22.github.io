@@ -296,33 +296,22 @@ export const independent = {
 };
 
 export const teams: Role[] = [
+  // Per Nischal's correction (30 Oct 2026), all student-team work is recorded under Team Eco Titans.
   {
     org: "Team Eco Titans, VIT",
-    role: "Mechanical Design Engineer",
-    place: "Vellore, India",
-    dates: "Aug 2020 – May 2021",
-    context: "Shell Eco-marathon, internal-combustion Prototype category. Student team.",
-    tools: ["Fusion 360", "ANSYS", "SolidWorks"],
-    slug: "student-teams",
-    bullets: [
-      { t: "Designed lightweight powertrain-mounting brackets in Fusion 360 and ANSYS, achieving a simulated 24% bracket mass reduction through multi-load-case FEA while holding a minimum 2.0 factor of safety under peak cornering and braking loads.", ids: "ECO-02" },
-      { t: "Contributed to SolidWorks subsystem packaging, ANSYS structural validation and safety-compliance documentation for the 2021 Shell Eco-marathon Virtual Technical Inspection, with first-pass approval reported for the chassis, steering and powertrain-mounting subsystems.", ids: "ECO-01" },
-    ],
-  },
-  {
-    org: "Team Celerity Solar EV, VIT",
     role: "Design Engineer",
     place: "Vellore, India",
     dates: "Oct 2019 – Feb 2022",
-    context: "Solar electric vehicle team. Student team.",
-    tools: ["CATIA", "SolidWorks", "ANSYS CFD and FEA", "MATLAB", "Simulink"],
+    context: "Shell Eco-marathon student team.",
+    tools: ["CATIA", "SolidWorks", "Fusion 360", "ANSYS CFD and FEA", "MATLAB", "Simulink"],
     slug: "student-teams",
     bullets: [
       { t: "Led the aerodynamic bodywork design in CATIA, SolidWorks and ANSYS CFD and FEA, delivering a reported 15% reduction in aerodynamic drag.", ids: "CEL-01" },
       { t: "Optimised the chassis with CAD and ANSYS FEA for a reported 10.5–12% weight reduction while maintaining structural integrity.", ids: "CEL-02" },
-      { t: "Managed bill-of-materials creation and led testing and data analysis, contributing to a 4th-place ranking in the Indian region and a top-50 overall placing at Shell Eco-marathon (2020–21 virtual season, UrbanConcept).", ids: "CEL-06" },
-      { t: "Applied DFM, floor planning and process planning with the manufacturing team, shortening assembly times and achieving a reported 20% improvement over the team's previous production process.", ids: "CEL-03" },
+      { t: "Designed lightweight powertrain-mounting brackets in Fusion 360 and ANSYS, achieving a simulated 24% bracket mass reduction through multi-load-case FEA while holding a minimum 2.0 factor of safety under peak cornering and braking loads.", ids: "ECO-02" },
       { t: "Modelled the powertrain in MATLAB and Simulink to maximise driving range, and processed telemetry in MATLAB to correlate multi-body models against accelerometer data for suspension tuning and structural hardpoints.", ids: "CEL-05, CEL-07" },
+      { t: "Contributed to SolidWorks subsystem packaging, ANSYS structural validation and safety-compliance documentation for the 2021 Shell Eco-marathon Virtual Technical Inspection, with first-pass approval reported for the chassis, steering and powertrain-mounting subsystems.", ids: "ECO-01" },
+      { t: "Applied DFM, floor planning and process planning with the manufacturing team, shortening assembly times and achieving a reported 20% improvement over the team's previous production process.", ids: "CEL-03" },
     ],
   },
 ];
@@ -369,7 +358,7 @@ export const skills: SkillRow[] = [
       { name: "Siemens NX", where: "JCB" },
       { name: "SolidWorks", where: "Pitti, independent, student teams" },
       { name: "SolidWorks Plastics", where: "Independent" },
-      { name: "CATIA V5", where: "Pitti, BTech, Celerity" },
+      { name: "CATIA V5", where: "Pitti, BTech, Eco Titans" },
       { name: "Creo Parametric", where: "Independent" },
       { name: "Fusion 360", where: "Independent, Eco Titans" },
     ],
@@ -379,9 +368,9 @@ export const skills: SkillRow[] = [
     items: [
       { name: "ANSYS Mechanical: structural, thermal, non-linear, modal, topology", where: "Caterpillar, Pitti, independent, MSc" },
       { name: "ANSYS Explicit Dynamics", where: "MSc group project" },
-      { name: "ANSYS Fluent", where: "BTech, Celerity" },
+      { name: "ANSYS Fluent", where: "BTech, Eco Titans" },
       { name: "OpenFOAM", where: "Independent, BTech" },
-      { name: "MATLAB, Simulink, Simscape", where: "MSc, Celerity" },
+      { name: "MATLAB, Simulink, Simscape", where: "MSc, Eco Titans" },
       { name: "Python with NumPy, MATLAB", where: "Caterpillar" },
     ],
   },
@@ -390,7 +379,7 @@ export const skills: SkillRow[] = [
     items: [
       { name: "BS 8888 and ASME Y14.5 GD&T", where: "JCB, Caterpillar, Pitti" },
       { name: "DFMEA and PFMEA", where: "JCB, Caterpillar, Pitti, MSc" },
-      { name: "DFM and DFA", where: "Pitti, MSc, Celerity" },
+      { name: "DFM and DFA", where: "Pitti, MSc, Eco Titans" },
       { name: "Digital Mock-Up and packaging studies", where: "JCB" },
       { name: "Engineering change orders", where: "Caterpillar" },
       { name: "Root-cause investigation", where: "Caterpillar, BHEL" },
@@ -410,13 +399,13 @@ export const research = {
   themes: [
     {
       title: "Reacting and compressible flows",
-      body: "An independent OpenFOAM validation of hydrogen-air detonation against Chapman-Jouguet reference data, and external-aerodynamics CFD from the BTech F1 project and the Celerity solar car.",
+      body: "An independent OpenFOAM validation of hydrogen-air detonation against Chapman-Jouguet reference data, and external-aerodynamics CFD from the BTech F1 project and the Team Eco Titans car.",
       evidence: "CFD-01, F1-03, CEL-01",
       scope: "Independent and academic",
     },
     {
       title: "Structural optimisation and lightweighting",
-      body: "Stress-constrained topology optimisation rebuilt as machinable B-Rep CAD, industrial bracket FEA at JCB, and solar-car chassis optimisation.",
+      body: "Stress-constrained topology optimisation rebuilt as machinable B-Rep CAD, industrial bracket FEA at JCB, and chassis optimisation in Team Eco Titans.",
       evidence: "TOPO-01, TOPO-02, JCB-08, CEL-02",
       scope: "Independent, industrial and academic",
     },
